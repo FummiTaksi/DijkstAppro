@@ -1,0 +1,9 @@
+DijkstAppro
+
+-Laskee käyttäjälle parhaan reitin Approlla. Approreitti koostuu baareista, jotka ovat verkossa. Approreitti alkaa ja loppuu aloituspisteestä. 
+
+-Perustoiminnallisuus : Nopein reitti(Keskitytään vain baarien etäisyyksiin), halvin reitti (aluksi jokaisella baarilla vain yksi juoma.)
+
+- Kehittyneempi toiminnallisuus : Nopein reitti jossa on tietty baari, reitin valinta tietyillä juomavalinnoilla (Lisätään baareihin erilaisia juomavalintoja.) , Nopeimman reitin muuttaminen halvemmaksi, nopeimman reitin löytäminen tietyllä budjetilla. 
+
+-Tavoitteena 5 opintopisteen laajuinen harjoitustyö. 
