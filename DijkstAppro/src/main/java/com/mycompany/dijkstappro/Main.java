@@ -11,6 +11,7 @@ import java.util.*;
  * @author mustonea
  */
 public class Main {
+    
     public static void main(String[] arghh) {
         System.out.println("Zaa jou");
     }
