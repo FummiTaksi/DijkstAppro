@@ -43,6 +43,6 @@ public class Baari {
             return false;
         }
         Baari verrattava = (Baari) o;
-        return (x == verrattava.getX() && y == verrattava.getY());
+        return (x == verrattava.getX() && y == verrattava.getY() && nimi.equals(verrattava.toString()));
     }
 }

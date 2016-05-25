@@ -29,53 +29,8 @@ public class Main {
 //       while (aloitusIndeksi < paikkojenLkm) {                // Lasketaan A*:llä kaikkien baarien etäisyys toisiinsa.
 //           
 //       }
-        kartanAlustus("esim1.txt");
-
-    }
-
-    public static int aStar(Baari lahto, Baari maali) {
-        int[][] manhattan = new int[100][100];
-        int maaliY = maali.getY();
-        int maaliX = maali.getX();
-        for (int leveys = 0; leveys < kartta.length; leveys++) {
-            for (int korkeus = 0; korkeus < kartta[0].length; korkeus++) {
-                char kirjain = kartta[korkeus][leveys];
-                if (kirjain != '#') {
-                    manhattan[korkeus][leveys] = Math.abs(maaliX - leveys) + Math.abs(maaliY - korkeus);
-                }
-            }
-
-        }
-        PriorityQueue<Koordinaatti> openList = new PriorityQueue();
-        HashSet<Koordinaatti> closedList = new HashSet();
-        Koordinaatti loppu = new Koordinaatti(maali.getX(),maali.getY(),0);
-        Koordinaatti pienin = new Koordinaatti(lahto.getX(),lahto.getY(),0);
-        while (!openList.contains(loppu)) {
-            
-        }
         
-        return 0;
-    }
 
-    public static char[][] kartanAlustus(String tiedostonNimi) throws FileNotFoundException {
-        char[][] kartta = new char[100][100];
-        Scanner lukija = new Scanner(new File(tiedostonNimi), "UTF-8");
-        int riviNro = 0;
-        while (lukija.hasNextLine()) {
-            String rivi = lukija.nextLine();
-            System.out.println(rivi);                               //testitulostus
-            for (int i = 0; i < rivi.length(); i++) {
-                char kirjain = rivi.charAt(i);
-                if (kirjain != '#' && kirjain != '.') {
-                    baarit[paikkojenLkm] = new Baari("" + kirjain, i, riviNro);
-                    paikkojenLkm++;
-                }
-                kartta[riviNro][i] = rivi.charAt(i);
-            }
-            riviNro++;
-        }
-
-        return kartta;
     }
 
 }

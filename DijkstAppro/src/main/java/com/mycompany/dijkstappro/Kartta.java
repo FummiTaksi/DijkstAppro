@@ -5,24 +5,63 @@
  */
 package com.mycompany.dijkstappro;
 
+import static com.mycompany.dijkstappro.Main.baarit;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author mustonea
  */
 public class Kartta {
-    ArrayList<Baari> baarit;
-    
-    public Kartta() {
-        this.baarit =new ArrayList();
+
+    private char[][] kartta;
+    private Baari[] baarit;
+    private int paikkojenLkm;
+    private String tarkistus;
+    public Kartta(String tiedosto) throws FileNotFoundException {
+        this.baarit = new Baari[100];
+        this.paikkojenLkm = 0;
+        this.tarkistus = "";
+        this.kartta = kartanAlustus(tiedosto);
+    }
+
+    public char[][] kartanAlustus(String tiedostonNimi) throws FileNotFoundException {
+        char[][] kartta = new char[100][100];
+        Scanner lukija = new Scanner(new File(tiedostonNimi), "UTF-8");
+        int riviNro = 0;
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            tarkistus += rivi + "\n";
+            for (int i = 0; i < rivi.length(); i++) {
+                char kirjain = rivi.charAt(i);
+                if (kirjain != '#' && kirjain != '.') {
+                    baarit[paikkojenLkm] = new Baari("" + kirjain, i, riviNro);
+                    paikkojenLkm++;
+                }
+                kartta[riviNro][i] = rivi.charAt(i);
+            }
+            riviNro++;
+        }
+
+        return kartta;
     }
     
-    public void lisaaBaari(Baari baari) {
-        baarit.add(baari);
+    public char[][] getKartta() {
+        return kartta;
     }
     
-    public ArrayList<Baari> getBaarit() {
+    public int getPaikkojenLkm() {
+        return paikkojenLkm;
+    }
+    
+    public Baari[] getBaarit() {
         return baarit;
+    }
+    
+    public String getTarkistus() {
+        return tarkistus;
     }
 }
