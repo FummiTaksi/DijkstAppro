@@ -5,7 +5,7 @@
  */
 package com.mycompany.dijkstappro;
 
-import static com.mycompany.dijkstappro.Main.baarit;
+//import static com.mycompany.dijkstappro.Main.baarit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,10 +17,10 @@ import java.util.Scanner;
  */
 public class Kartta {
 
-    private char[][] kartta;
-    private Baari[] baarit;
-    private int paikkojenLkm;
-    private String tarkistus;
+    private char[][] kartta;      // ensin y, sitten x kuten kaikissa muissa taulukoissa.
+    private Baari[] baarit;       
+    private int paikkojenLkm;    // kuvaa kuinka monta baaria , aloitus ja lopetuspaikkaa on .
+    private String tarkistus;    // käytetään vain testaamiseen.
     public Kartta(String tiedosto) throws FileNotFoundException {
         this.baarit = new Baari[100];
         this.paikkojenLkm = 0;

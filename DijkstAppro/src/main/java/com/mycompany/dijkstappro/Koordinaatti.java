@@ -31,6 +31,11 @@ public class Koordinaatti implements Comparable{
     public int getEtaisyys() {
         return etaisyys;
     }
+    
+    @Override
+    public String toString() {
+        return "x " + x + " y " + y;
+    }
 
     @Override
     public int compareTo(Object t) {
@@ -38,5 +43,13 @@ public class Koordinaatti implements Comparable{
         return verrattava.getEtaisyys() - etaisyys;
     }
     
+    @Override
+    public boolean equals(Object o) {
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+        Koordinaatti verrattava = (Koordinaatti) o;
+        return x == verrattava.getX() && y == verrattava.getY();
+    }
     
 }

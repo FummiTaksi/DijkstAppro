@@ -15,21 +15,19 @@ import java.util.*;
  */
 public class Main {
 
-    static int paikkojenLkm;
-    static Baari[] baarit;
-    static int[][] etaisyys;
-    static char[][] kartta;
+   
 
     public static void main(String[] arghh) throws FileNotFoundException {
-        paikkojenLkm = 0;                                      //kartassa olevien baarien määrä
-        baarit = new Baari[100];
-        etaisyys = new int[100][100];
-//        kartta = kartanAlustus("esim1.txt");          // muodostetaan tekstitiedostosta kartta taulukkoon.
-//       int aloitusIndeksi = 0;                               
-//       while (aloitusIndeksi < paikkojenLkm) {                // Lasketaan A*:llä kaikkien baarien etäisyys toisiinsa.
-//           
-//       }
-        
+
+        Koordinaatti yksi = new Koordinaatti(1,1,1);
+        Koordinaatti kaksi = new Koordinaatti(1,1,2);
+        TreeMap<Koordinaatti,Integer> testi =new TreeMap();
+        testi.put(yksi,5);
+        System.out.println(testi.containsKey(kaksi));
+//        System.out.println(yksi.equals(kaksi));
+//        Kartta kartta = new Kartta("esim1.txt");          // muodostetaan tekstitiedostosta kartta taulukkoon.
+//        Astar tahti = new Astar(kartta);
+//        System.out.println("pitäisi olla 10 " + tahti.aStar(new Koordinaatti(1,1,0), new Koordinaatti(2,1,0), kartta.getKartta()));
 
     }
 
