@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- *
+ * Kartta pitaa kirjaa kartalla olevissa koordinaateissa sijaitsevista merkeista seka listan baareista.
  * @author mustonea
  */
 public class Kartta {
@@ -21,6 +21,12 @@ public class Kartta {
     private Baari[] baarit;       
     private int paikkojenLkm;    // kuvaa kuinka monta baaria , aloitus ja lopetuspaikkaa on .
     private String tarkistus;    // käytetään vain testaamiseen.
+
+    /**
+     * 
+     * @param tiedosto
+     * @throws FileNotFoundException
+     */
     public Kartta(String tiedosto) throws FileNotFoundException {
         this.baarit = new Baari[100];
         this.paikkojenLkm = 0;
@@ -28,6 +34,12 @@ public class Kartta {
         this.kartta = kartanAlustus(tiedosto);
     }
 
+    /**
+     * Metodi alustaa kartan kaksiulotteiseen taulukkoon tekstitiedostosta.
+     * @param tiedostonNimi
+     * @return
+     * @throws FileNotFoundException
+     */
     public char[][] kartanAlustus(String tiedostonNimi) throws FileNotFoundException {
         char[][] kartta = new char[100][100];
         Scanner lukija = new Scanner(new File(tiedostonNimi), "UTF-8");
@@ -53,10 +65,18 @@ public class Kartta {
         return kartta;
     }
     
+    /**
+     * Palauttaa aloituspaikan,lopetuspaikan ja baarien lukumaaran summan.
+     * @return
+     */
     public int getPaikkojenLkm() {
         return paikkojenLkm;
     }
     
+    /**
+     * Palauttaa taulukon kartan Baari-olioista.
+     * @return
+     */
     public Baari[] getBaarit() {
         return baarit;
     }

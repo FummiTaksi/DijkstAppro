@@ -6,18 +6,27 @@
 package com.mycompany.dijkstappro;
 
 /**
- *
+ * Luokan tarkoituksena kuvata  kartassa olevia pisteita ,jotka voivat olla mita vain paitsi seinaa (#).
  * @author mustonea
  */
 public class Koordinaatti implements Comparable{
     private int x;
     private int y;
-    private int etaisyys;
-            
-    public Koordinaatti(int x, int y,int etaisyys) {
+    private int hinta;
+    private int etaisyysAlusta;
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param hinta Hinta on Manhattan-etaisyys loppupisteeseen + etaisyys alkupisteeseen.
+     * @param etaisyysAlusta Etaisyys aloituspisteesta.
+     */
+    public Koordinaatti(int x, int y,int hinta,int etaisyysAlusta) {
         this.x = x;
         this.y = y;
-        this.etaisyys = etaisyys;
+        this.hinta = hinta;
+        this.etaisyysAlusta = etaisyysAlusta;
     }
     
     public int getX() {
@@ -28,8 +37,12 @@ public class Koordinaatti implements Comparable{
         return y;
     }
     
-    public int getEtaisyys() {
-        return etaisyys;
+    public int getHinta() {
+        return hinta;
+    }
+    
+    public int getEtaisyysAlusta() {
+        return etaisyysAlusta;
     }
     
     @Override
@@ -37,10 +50,15 @@ public class Koordinaatti implements Comparable{
         return "x " + x + " y " + y;
     }
 
+    /**
+     * Vertaa Koordinaatti olioita toisiinsa perustuen hinta-muuttujaan.
+     * @param t
+     * @return
+     */
     @Override
     public int compareTo(Object t) {
         Koordinaatti verrattava = (Koordinaatti) t;
-        return verrattava.getEtaisyys() - etaisyys;
+        return verrattava.getHinta() - hinta;
     }
     
     @Override

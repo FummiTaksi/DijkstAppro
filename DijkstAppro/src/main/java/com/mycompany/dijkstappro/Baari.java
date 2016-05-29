@@ -6,7 +6,7 @@
 package com.mycompany.dijkstappro;
 
 /**
- *
+ * Baari-olio kartassa esiintyvalle baarille.
  * @author mustonea
  */
 public class Baari {
