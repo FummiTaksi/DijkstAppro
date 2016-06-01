@@ -49,31 +49,31 @@ public class AstarTest {
     
     @Test
     public void yksiOikealleEtaisyysOikein() {
-        assertEquals(10,aStar.aStar(new Koordinaatti(1,1,0,0), new Koordinaatti(2,1,0,0)));
+        assertEquals(10,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(2,1,0)));
     }
     
     @Test
     public void yksiVinoonEtaisyysOikein() {
-        assertEquals(14,aStar.aStar(new Koordinaatti(1,1,0,0), new Koordinaatti(2,2,0,0)));
+        assertEquals(14,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(2,2,0)));
     }
     
     @Test
     public void aloituksestaLopetuksestaOikein() {
-        assertEquals(86,aStar.aStar(new Koordinaatti(1,1,0,0), new Koordinaatti(8,3,0,0)));
+        assertEquals(86,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(8,3,0)));
     }
     
     @Test
     public void abOikein() {
-        assertEquals(24,aStar.aStar(new Koordinaatti(1,1,0,0), new Koordinaatti(3,2,0,0)));
+        assertEquals(24,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(3,2,0)));
     }
     
     @Test
     public void bcOikein() {
-        assertEquals(48,aStar.aStar(new Koordinaatti(3,2,0,0), new Koordinaatti(6,3,0,0)));
+        assertEquals(48,aStar.aStar(new Koordinaatti(3,2,0), new Koordinaatti(6,3,0)));
     }
     
     @Test
     public void acOikein() {
-        assertEquals(72,aStar.aStar(new Koordinaatti(1,1,0,0), new Koordinaatti(6,3,0,0)));
+        assertEquals(72,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(6,3,0)));
     }
 }

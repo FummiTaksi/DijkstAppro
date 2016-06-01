@@ -13,20 +13,18 @@ public class Koordinaatti implements Comparable{
     private int x;
     private int y;
     private int hinta;
-    private int etaisyysAlusta;
+   
 
     /**
      *
      * @param x
      * @param y
      * @param hinta Hinta on Manhattan-etaisyys loppupisteeseen + etaisyys alkupisteeseen.
-     * @param etaisyysAlusta Etaisyys aloituspisteesta.
      */
-    public Koordinaatti(int x, int y,int hinta,int etaisyysAlusta) {
+    public Koordinaatti(int x, int y,int hinta) {
         this.x = x;
         this.y = y;
         this.hinta = hinta;
-        this.etaisyysAlusta = etaisyysAlusta;
     }
     
     public int getX() {
@@ -40,11 +38,7 @@ public class Koordinaatti implements Comparable{
     public int getHinta() {
         return hinta;
     }
-    
-    public int getEtaisyysAlusta() {
-        return etaisyysAlusta;
-    }
-    
+        
     @Override
     public String toString() {
         return "x " + x + " y " + y;

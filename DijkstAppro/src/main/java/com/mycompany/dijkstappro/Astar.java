@@ -18,17 +18,14 @@ import java.util.TreeSet;
 public class Astar {
 
     private int[][] vierailu;
+    private int[][] etaisyysAlusta;
     private PriorityQueue<Koordinaatti> keko;
     private Koordinaatti[][] parent;
     private Kartta kartta;
     private int[][] manhattan;      //ensin y, sitten x kuten muissakin taulukoissa.
 
     public Astar(Kartta kartta) {
-        this.vierailu = new int[100][100];
-        this.keko = new PriorityQueue();
         this.kartta = kartta;
-        this.parent = new Koordinaatti[100][100];
-        this.manhattan = new int[100][100];
     }
     
     public Kartta getKartta() {
@@ -36,6 +33,11 @@ public class Astar {
     }
 
     public int aStar(Koordinaatti alku, Koordinaatti loppu) {
+        this.vierailu = new int[100][100];
+        this.etaisyysAlusta = new int[100][100];
+        this.keko = new PriorityQueue();
+        this.parent = new Koordinaatti[100][100];
+        this.manhattan = new int[100][100];
         for (int leveys = 0; leveys < kartta.getKartta().length; leveys++) {
             for (int korkeus = 0; korkeus < kartta.getKartta()[0].length; korkeus++) {
                 char kirjain = kartta.getKartta()[korkeus][leveys];
@@ -50,7 +52,7 @@ public class Astar {
 //        System.out.println("alkuX " + alku.getX() + " alkuY " + alku.getY());
 //        System.out.println("loppuX " + loppu.getX() + " loppuY " + loppu.getY());
         vieraile(alku.getX(), alku.getY(), 0, alku);
-        while (vierailu[loppu.getY()][loppu.getX()] == 0) {
+        while (vierailu[loppu.getY()][loppu.getX()] != 2) {
 //            System.out.println("loop");
             Koordinaatti lahin = keko.poll();
             vierailu[lahin.getY()][lahin.getX()] = 2;
@@ -66,9 +68,11 @@ public class Astar {
            
 
         }
+        
 //        System.out.println("loppukoordinaatti löydetty");
         int palautus = 0;
         while (!loppu.equals(alku)) {
+//            System.out.println("x " + loppu.getX() + " y " + loppu.getY());
             Koordinaatti seuraava = parent[loppu.getY()][loppu.getX()];
             int liike = Math.abs(seuraava.getX() - loppu.getX()) + Math.abs(seuraava.getY() - loppu.getY());
             if (liike == 1) {
@@ -92,16 +96,25 @@ public class Astar {
      * @param mista
      */
     public void vieraile(int x, int y, int arvo, Koordinaatti mista) {
+        
 //        System.out.println("y " + y + " x " + x);
         if (kartta.getKartta()[y][x] != '#' && vierailu[y][x] != 2) {
-            if (vierailu[y][x] == 0 || parent[y][x].getEtaisyysAlusta() > mista.getEtaisyysAlusta())  {
+            if (vierailu[y][x] == 0)  {
                  //System.out.println("lisätään openListaan alkio x " + x + " y " + y);
-                keko.add(new Koordinaatti(x, y, manhattan[y][x] + arvo,mista.getEtaisyysAlusta() + arvo));
+                 etaisyysAlusta[y][x] = etaisyysAlusta[mista.getY()][mista.getX()] + arvo;
+                keko.add(new Koordinaatti(x, y, manhattan[y][x] + etaisyysAlusta[y][x]));
+                
                 vierailu[y][x] = 1;
 //                System.out.println("x " + x + " y " + y + " parent on " + mista);
                 parent[y][x] = mista;  
             } 
-        
+             Koordinaatti jalkelainen = parent[mista.getY()][mista.getX()];
+            if (etaisyysAlusta[jalkelainen.getY()][jalkelainen.getX()] > etaisyysAlusta[y][x]) {
+//                System.out.println("tsekkaus");
+//                System.out.println("mista: " + mista);
+//                System.out.println("menossa :  x " + x + " y " + y);
+                parent[mista.getY()][mista.getX()] = new Koordinaatti(x,y,manhattan[y][x] + etaisyysAlusta[y][x]);
+            }
             
         }
     }

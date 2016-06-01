@@ -21,7 +21,8 @@ public class Kartta {
     private Baari[] baarit;       
     private int paikkojenLkm;    // kuvaa kuinka monta baaria , aloitus ja lopetuspaikkaa on .
     private String tarkistus;    // käytetään vain testaamiseen.
-
+    private Baari aloituspaikka;
+    private Baari lopetuspaikka;
     /**
      * 
      * @param tiedosto
@@ -40,6 +41,15 @@ public class Kartta {
      * @return
      * @throws FileNotFoundException
      */
+    
+    public Baari getAloituspaikka() {
+        return aloituspaikka;
+    }
+    
+    public Baari getLopetuspaikka() {
+        return lopetuspaikka;
+    }
+    
     public char[][] kartanAlustus(String tiedostonNimi) throws FileNotFoundException {
         char[][] kartta = new char[100][100];
         Scanner lukija = new Scanner(new File(tiedostonNimi), "UTF-8");
@@ -49,8 +59,14 @@ public class Kartta {
             tarkistus += rivi + "\n";
             for (int i = 0; i < rivi.length(); i++) {
                 char kirjain = rivi.charAt(i);
+                if (kirjain == 'a') {
+                    this.aloituspaikka = new Baari(i,riviNro,paikkojenLkm);
+                }
+                if (kirjain == 'l') {
+                    this.lopetuspaikka = new Baari(i,riviNro,paikkojenLkm);
+                }
                 if (kirjain != '#' && kirjain != '.') {
-                    baarit[paikkojenLkm] = new Baari("" + kirjain, i, riviNro);
+                    baarit[paikkojenLkm] = new Baari(i, riviNro,paikkojenLkm);
                     paikkojenLkm++;
                 }
                 kartta[riviNro][i] = rivi.charAt(i);

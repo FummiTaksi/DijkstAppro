@@ -12,13 +12,11 @@ package com.mycompany.dijkstappro;
 public class Baari {
     private int x;
     private int y;
-    private String nimi;
     private int id;
-    public Baari(String nimi,int x, int y) {
+    public Baari(int x, int y,int id) {
         this.x = x;
         this.y = y;
         this.id = id;
-        this.nimi =nimi;
     }
     
     public int getX() {
@@ -30,12 +28,10 @@ public class Baari {
     }
 
     public int getId() {
-        return Integer.parseInt(x + "" +  y);
+        return id;
     }
-    @Override
-    public String toString() {
-        return nimi;
-    }
+    
+   
     
     @Override
     public boolean equals(Object o) {
@@ -43,6 +39,6 @@ public class Baari {
             return false;
         }
         Baari verrattava = (Baari) o;
-        return (x == verrattava.getX() && y == verrattava.getY() && nimi.equals(verrattava.toString()));
+        return (x == verrattava.getX() && y == verrattava.getY());
     }
 }

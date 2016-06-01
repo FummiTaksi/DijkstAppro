@@ -5,3 +5,6 @@ Tuntipäiväkirja
 24.5 Koodaamista 1,5h : Kartan alustus valmis, A* algoritmin koodauksen aloittaminen
 28.5 aStar - algoritmin koodaamista ja debuggaamista 1,5h
 29.5 aStarin koodaaminen, debuggaaminen ja testaaminen 2h
+30.5 aStarin debuggaamista 0,5h
+31.5 aStar korjattu toimivaksi ja testaaminen. Verkko-luokan aloittelu. 1h
+1.6  Verkko-luokka koodattu ja testatty. Reitinhaku-algoritmin koodaamisen aloittaminen. 4h

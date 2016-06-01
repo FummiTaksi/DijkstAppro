@@ -19,11 +19,12 @@ public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
 
-        
-//        System.out.println(yksi.equals(kaksi));
-        Kartta kartta = new Kartta("esim1.txt");          // muodostetaan tekstitiedostosta kartta taulukkoon.
-        Astar tahti = new Astar(kartta);
-        System.out.println("pitäisi olla 10 " + tahti.aStar(new Koordinaatti(1,1,0), new Koordinaatti(2,1,0), kartta.getKartta()));
+//        Astar tahti = new Astar(new Kartta("esim1.txt"));
+//        tahti.aStar(new Koordinaatti(6,3,0), new Koordinaatti(8,3,0));
+      Verkko verkko = new Verkko("esim1.txt");
+      System.out.println(verkko.muodostaVerkko());
+
+          
 
     }
 

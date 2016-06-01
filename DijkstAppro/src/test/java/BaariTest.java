@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 public class BaariTest {
     private Baari baari;
     public BaariTest() {
-        this.baari = new Baari("Testi",5,3);
+        this.baari = new Baari(5,3,0);
     }
     
     @BeforeClass
@@ -53,10 +53,7 @@ public class BaariTest {
     }
     @Test
     public void idOikein() {
-        assertEquals(53,baari.getId());
+        assertEquals(0,baari.getId());
     }
-    @Test
-    public void toStringOikein() {
-        assertEquals("Testi",baari.toString());
-    }
+
 }

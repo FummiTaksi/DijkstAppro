@@ -67,10 +67,10 @@ public class KarttaTest {
         assertEquals(0,kartta.getBaarit()[0].getY());
     }
     
-    @Test
-    public void aloituspaikanKirjainoikein() {
-        assertEquals("a",kartta.getBaarit()[0].toString());
-    }
+//    @Test
+//    public void aloituspaikanKirjainoikein() {
+//        assertEquals("a",kartta.getBaarit()[0].toString());
+//    }
     
     @Test
     public void lopetuspaikanXOikein() {
@@ -82,10 +82,10 @@ public class KarttaTest {
         assertEquals(1,kartta.getBaarit()[1].getY());
     }
     
-    @Test
-    public void lopetuspaikanKirjainoikein() {
-        assertEquals("l",kartta.getBaarit()[1].toString());
-    }
+//    @Test
+//    public void lopetuspaikanKirjainoikein() {
+//        assertEquals("l",kartta.getBaarit()[1].toString());
+//    }
     
     
 }
