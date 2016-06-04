@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import com.mycompany.dijkstappro.Kartta;
 import com.mycompany.dijkstappro.Verkko;
 import java.io.FileNotFoundException;
 import org.junit.After;
@@ -22,7 +23,7 @@ public class VerkkoTest {
     private Verkko verkko;
     
     public VerkkoTest() throws FileNotFoundException {
-        this.verkko = new Verkko("esim1.txt");
+        this.verkko = new Verkko(new Kartta("esim1.txt"));
     }
     
     @BeforeClass

@@ -15,8 +15,14 @@ public class Verkko {
 
     private int[][] etaisyysMatriisi;
     private Kartta kartta;
-    public Verkko(String tiedostonNimi) throws FileNotFoundException {
-        this.kartta = new Kartta(tiedostonNimi);
+
+    /**
+     *  Luokka pitää sisällään matriisin tekstitiedostosta luetusta appro-kartasta. Matriisissa on jokaisen baarin etäisyys toisistaan.
+     * @param tiedostonNimi
+     * @throws FileNotFoundException
+     */
+    public Verkko(Kartta kartta)  {
+        this.kartta = kartta;
         this.etaisyysMatriisi = new int[100][100];
         
     }
@@ -35,8 +41,8 @@ public class Verkko {
 //                System.out.println("toinen baari määritelty");
                 Koordinaatti alkupiste = new Koordinaatti(yksi.getX(),yksi.getY(),0);
                 Koordinaatti loppupiste = new Koordinaatti(kaksi.getX(),kaksi.getY(),0);
-                System.out.println("alku " + alkupiste);
-                System.out.println("loppu " + loppupiste);
+//                System.out.println("alku " + alkupiste);
+//                System.out.println("loppu " + loppupiste);
                 int etaisyys = tahti.aStar(alkupiste, loppupiste);
 //                System.out.println("etäisyys laskettu");
                 etaisyysMatriisi[yksi.getId()][kaksi.getId()] = etaisyys;

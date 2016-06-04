@@ -31,7 +31,10 @@ public class Baari {
         return id;
     }
     
-   
+   @Override
+   public String toString() {
+       return "x: " + x + " y: " + y;
+   }
     
     @Override
     public boolean equals(Object o) {

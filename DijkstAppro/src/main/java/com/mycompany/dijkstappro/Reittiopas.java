@@ -6,6 +6,8 @@
 package com.mycompany.dijkstappro;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Queue;
 import java.util.Stack;
 
@@ -17,18 +19,37 @@ public class Reittiopas {
 
     private int[][] verkkoMatriisi;
     private Verkko verkko;
+    private Kartta kartta;
     private int halvinReitti;
-    private Stack<Baari> reittiPino;
+    private ArrayDeque<Baari> reittiJono;
 
-    public Reittiopas(String tiedostonNimi) throws FileNotFoundException {
-        this.verkko = new Verkko(tiedostonNimi);
+    /**
+     * Luokka laskee parhaan reitin tekstitiedostossa olevalle approkartalle.
+     * @param tiedostonNimi
+     * @throws FileNotFoundException
+     */
+    public Reittiopas(Kartta kartta) throws FileNotFoundException {
+        this.verkko = new Verkko(kartta);
+        this.kartta = kartta;
         this.verkkoMatriisi = verkko.muodostaVerkko();
         this.halvinReitti = Integer.MAX_VALUE;
     }
 
-    public void etsiReitti(Baari alku, Baari loppu, int[] vierailu, int reitinHinta, Stack<Baari> reitti) {
+    public ArrayDeque<Baari> getJono() {
+        return reittiJono;
+    }
+
+    /**
+     * Rekursiivinen metodi parhaan reitin etsimiseen.
+     * @param alku
+     * @param loppu
+     * @param vierailu
+     * @param reitinHinta
+     * @param reitti
+     */
+    public void etsiReitti(Baari alku, Baari loppu, int[] vierailu, int reitinHinta, ArrayDeque<Baari> reitti) {
         vierailu[alku.getId()] = 1;
-        reitti.push(alku);
+        reitti.add(alku);
         boolean kaikkiLoydetty = true;
         for (int i = 0; i < verkko.getKartta().getPaikkojenLkm(); i++) {
             Baari baari = verkko.getKartta().getBaarit()[i];
@@ -46,20 +67,35 @@ public class Reittiopas {
             int reitinLopullinenHinta = reitinHinta + verkkoMatriisi[alku.getId()][loppu.getId()];
             if (reitinLopullinenHinta < halvinReitti) {
                 halvinReitti = reitinLopullinenHinta;
-                reitti.push(loppu);
-                this.reittiPino = reitti;
+                reitti.add(loppu);
+                this.reittiJono = reitti;
             }
             
         }
     }
     
+    /**
+     *  
+     */
     public void haeReitti() {
         int[] vierailu = new int[verkko.getKartta().getPaikkojenLkm() + 1];
-        Stack<Baari> pino = new Stack();
-        Baari aloitusPaikka = verkko.getKartta().getAloituspaikka();
-        pino.push(aloitusPaikka);
-        vierailu[aloitusPaikka.getId()] = 1;
-        etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,pino);
+//        System.out.println("aloituspaikka " + kartta.getAloituspaikka());
+//        System.out.println("lopetuspaikka " + kartta.getLopetuspaikka());
+        ArrayDeque<Baari> jono = new ArrayDeque();
+        etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,jono);
+    }
+    
+    @Override
+    public String toString() {
+        String palautus = " Approreitti on seuraava: " + " \n";
+
+        while(!reittiJono.isEmpty()) {
+            Baari seuraava = reittiJono.poll();
+            
+            palautus += "Baari " + kartta.getKartta()[seuraava.getY()][seuraava.getX()] + ", sijainti " + seuraava + "\n";
+        }
+        
+        return palautus + "\n" + " Reitin hinta on " + halvinReitti;
     }
 
 }

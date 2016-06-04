@@ -59,10 +59,15 @@ public class Kartta {
             tarkistus += rivi + "\n";
             for (int i = 0; i < rivi.length(); i++) {
                 char kirjain = rivi.charAt(i);
+//                System.out.print(kirjain);
                 if (kirjain == 'a') {
+//                    System.out.println("a");
+//                    System.out.println("x " + i + " y " + riviNro);
                     this.aloituspaikka = new Baari(i,riviNro,paikkojenLkm);
                 }
                 if (kirjain == 'l') {
+//                    System.out.println("l");
+//                    System.out.println("x " + i + " y " + riviNro);
                     this.lopetuspaikka = new Baari(i,riviNro,paikkojenLkm);
                 }
                 if (kirjain != '#' && kirjain != '.') {
@@ -71,6 +76,7 @@ public class Kartta {
                 }
                 kartta[riviNro][i] = rivi.charAt(i);
             }
+//            System.out.println("");
             riviNro++;
         }
 

@@ -19,13 +19,10 @@ public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
 
-//        Astar tahti = new Astar(new Kartta("esim1.txt"));
-//        tahti.aStar(new Koordinaatti(6,3,0), new Koordinaatti(8,3,0));
-      Verkko verkko = new Verkko("esim1.txt");
-      System.out.println(verkko.muodostaVerkko());
-
-          
-
+//         char[][] kirjaimet = new char[10][10];
+//         System.out.println("1" + kirjaimet[1][1] + "1");
+         Logiikka logiikka = new Logiikka("esim1.txt");
+         logiikka.tulostaReitti();
     }
 
 }
