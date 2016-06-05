@@ -8,4 +8,4 @@ Viikkoraportti 3
 
 - Ohjelman perustoiminnallisuudessa on pieniä virheitä, eli seuraavaksi ohjelmassa on ongelman debuggaamista ja testien kirjoittamista. 
 
--Aikaa käytetty työn tekemiseen: 8h
+-Aikaa käytetty työn tekemiseen: 8,5h

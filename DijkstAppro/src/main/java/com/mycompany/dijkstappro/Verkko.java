@@ -61,4 +61,8 @@ public class Verkko {
         return kartta;
     }
     
+    
+    public void setKartta(Kartta uusiKartta) {
+        this.kartta = uusiKartta;
+    }
 }

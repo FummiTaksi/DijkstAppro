@@ -17,6 +17,11 @@ public class Logiikka {
     private Reittiopas opas;
     private Astar tahti;
     
+    /**
+     * Luokka yhdistää kaikki ohjelman luokat toimimaan yhdessä.
+     * @param tiedostonNimi
+     * @throws FileNotFoundException
+     */
     public Logiikka(String tiedostonNimi) throws FileNotFoundException {
         this.kartta = new Kartta(tiedostonNimi);
         this.verkko  = new Verkko(kartta);

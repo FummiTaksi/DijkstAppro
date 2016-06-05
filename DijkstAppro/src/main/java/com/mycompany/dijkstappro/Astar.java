@@ -29,6 +29,7 @@ public class Astar {
         this.kartta = kartta;
     }
 
+   
     public Kartta getKartta() {
         return kartta;
     }
@@ -62,6 +63,7 @@ public class Astar {
         while (vierailu[loppu.getY()][loppu.getX()] != 2) {
 //            System.out.println("loop");
             Koordinaatti lahin = keko.poll();
+            System.out.println("Lähin " + lahin);
             vierailu[lahin.getY()][lahin.getX()] = 2;
             vieraile(lahin.getX() - 1, lahin.getY() - 1, 14, lahin);
             vieraile(lahin.getX(), lahin.getY() - 1, 10, lahin);

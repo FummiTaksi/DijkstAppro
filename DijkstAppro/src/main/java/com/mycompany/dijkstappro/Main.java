@@ -21,8 +21,9 @@ public class Main {
 
 //         char[][] kirjaimet = new char[10][10];
 //         System.out.println("1" + kirjaimet[1][1] + "1");
-         Logiikka logiikka = new Logiikka("esim1.txt");
-         logiikka.tulostaReitti();
+          Kartta kartta = new Kartta("esim2.txt");
+          Astar tahti = new Astar(kartta);
+          tahti.aStar(new Koordinaatti(1,5,0), new Koordinaatti(3,1,0));
     }
 
 }

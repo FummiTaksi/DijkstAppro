@@ -76,4 +76,16 @@ public class AstarTest {
     public void acOikein() {
         assertEquals(72,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(6,3,0)));
     }
+    
+    @Test
+    public void esim2adOikein1() throws FileNotFoundException {
+        aStar.setKartta(new Kartta("esim2.txt"));
+        assertEquals(48,aStar.aStar(new Koordinaatti(3,1,0), new Koordinaatti(1,5,0)));
+    }
+    
+    @Test
+    public void esim2adOikein2() throws FileNotFoundException {
+        aStar.setKartta(new Kartta("esim2.txt"));
+        assertEquals(48,aStar.aStar(new Koordinaatti(1,5,0), new Koordinaatti(3,1,0)));
+    }
 }

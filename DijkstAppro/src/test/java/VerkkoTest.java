@@ -87,4 +87,11 @@ public class VerkkoTest {
         assertEquals(48,verkko.muodostaVerkko()[2][1]);
     }
     
+    @Test
+    
+    public void esim2adOikein1() throws FileNotFoundException {
+        verkko.setKartta(new Kartta("esim2.txt"));
+        assertEquals(48,verkko.muodostaVerkko()[0][1]);
+    }
+    
 }

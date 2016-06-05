@@ -10,3 +10,4 @@ Tuntipäiväkirja
 1.6  Verkko-luokka koodattu ja testatty. Reitinhaku-algoritmin koodaamisen aloittaminen. 4h
 3.6 ReitinHaku-algoritmin koodaamista , ongelmien debuggaamista 1,5h
 4.6 Reitinhaku-luokan ongelmien debuggaamista 1h
+5.6 aStar luokan-ongelman debuggaamista 0,5h

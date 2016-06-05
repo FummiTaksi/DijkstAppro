@@ -48,6 +48,9 @@ public class Reittiopas {
      * @param reitti
      */
     public void etsiReitti(Baari alku, Baari loppu, int[] vierailu, int reitinHinta, ArrayDeque<Baari> reitti) {
+//        System.out.println("alku " + alku);
+//        System.out.println("loppu " + loppu);
+//        System.out.println("reitinHinta " + reitinHinta);
         vierailu[alku.getId()] = 1;
         reitti.add(alku);
         boolean kaikkiLoydetty = true;
@@ -64,7 +67,9 @@ public class Reittiopas {
 
         }
         if (kaikkiLoydetty) {
+            System.out.println("reitti loppui");
             int reitinLopullinenHinta = reitinHinta + verkkoMatriisi[alku.getId()][loppu.getId()];
+            System.out.println("lopullinen hinta " + reitinLopullinenHinta);
             if (reitinLopullinenHinta < halvinReitti) {
                 halvinReitti = reitinLopullinenHinta;
                 reitti.add(loppu);
