@@ -7,3 +7,5 @@ Viikkoraportti 3
 - Opin tällä viikolla, että on tärkeä miettiä ohjelman luokkien rakenne. Korjasin ohjelman sellaiseksi, että Kartta-olio luodaan vain kerran. Tämä säästää aikaaa sekä tilaa ja on parempaa koodia.
 
 - Ohjelman perustoiminnallisuudessa on pieniä virheitä, eli seuraavaksi ohjelmassa on ongelman debuggaamista ja testien kirjoittamista. 
+
+-Aikaa käytetty työn tekemiseen: 8h

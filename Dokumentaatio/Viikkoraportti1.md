@@ -6,4 +6,5 @@ Viikkoraportti 1
 
 -Epäselväksi on jäänyt mikä on A* algoritmin aikavaativuus, vaikka yritin sitä netistä kovasti etsiä. Lisäksi kun kurssin ajassa mainitsit että reitinhaussa haku on ohjelmassa suoritettava kaikilla algoritmeilla, niin mitkä ne ovat ? Näitä sovellan ohjelmassani siinä vaiheessa kun verkko on muodostettu ?
 
+-Aikaa käytetty työn tekemiseen: 6h
 
