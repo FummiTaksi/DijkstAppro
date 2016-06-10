@@ -12,5 +12,6 @@ Tuntipäiväkirja
 4.6 Reitinhaku-luokan ongelmien debuggaamista 1h
 5.6 aStar luokan-ongelman debuggaamista 0,5h
 6.6 Minimikeko-luokan koodaaminen ja testaaminen 1,5h
-7.6 aStar ja Reittiopas luokka debugattu.
+7.6 aStar ja Reittiopas luokka debugattu. 1,5h
+9.6 Kirjoitettu Reittioppaalle testejä. 45min
 

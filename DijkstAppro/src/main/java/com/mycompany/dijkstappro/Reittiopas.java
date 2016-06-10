@@ -22,6 +22,7 @@ public class Reittiopas {
     private Kartta kartta;
     private int halvinReitti;
     private ArrayDeque<Baari> reittiJono;
+    private String reitti;
 
     /**
      * Luokka laskee parhaan reitin tekstitiedostossa olevalle approkartalle.
@@ -33,10 +34,15 @@ public class Reittiopas {
         this.kartta = kartta;
         this.verkkoMatriisi = verkko.muodostaVerkko();
         this.halvinReitti = Integer.MAX_VALUE;
+        this.reitti = "";
     }
 
     public ArrayDeque<Baari> getJono() {
         return reittiJono;
+    }
+    
+    public int getHalvimmanReitinHinta() {
+        return halvinReitti;
     }
 
     /**
@@ -94,12 +100,22 @@ public class Reittiopas {
         etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,jono);
     }
     
+    public String palautaReitti() {
+        ArrayDeque<Baari> apu = reittiJono.clone();
+        String palautus = "";
+        while(!apu.isEmpty()) {
+            Baari seuraava = apu.poll();
+            palautus += kartta.getKartta()[seuraava.getY()][seuraava.getX()];
+        }
+        return palautus;
+    }
+    
     @Override
     public String toString() {
         String palautus = " Approreitti on seuraava: " + " \n";
-
-        while(!reittiJono.isEmpty()) {
-            Baari seuraava = reittiJono.poll();
+        ArrayDeque<Baari> apu = reittiJono.clone();
+        while(!apu.isEmpty()) {
+            Baari seuraava = apu.poll();
             palautus += "Baari " + kartta.getKartta()[seuraava.getY()][seuraava.getX()] + ", sijainti " + seuraava + "\n";
         }
         

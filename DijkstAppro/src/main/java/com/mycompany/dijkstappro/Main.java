@@ -16,9 +16,10 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
-        Reittiopas opas = new Reittiopas(new Kartta("esim3.txt"));
-        opas.haeReitti();
-        System.out.println(opas);
+//        Reittiopas opas = new Reittiopas(new Kartta("esim3.txt"));
+//        opas.haeReitti();
+//        System.out.println(opas);
+          
     }
 
 }
