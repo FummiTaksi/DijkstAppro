@@ -16,17 +16,9 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
-        Minimikeko keko = new Minimikeko();
-        Koordinaatti[] taulukko = new Koordinaatti[10];
-        taulukko[1] = new Koordinaatti(7, 7, 7);
-        taulukko[2] = new Koordinaatti(2, 2, 2);
-        taulukko[3] = new Koordinaatti(1, 1, 1);
-        taulukko[4] = new Koordinaatti(5, 5, 5);
-        taulukko[5] = new Koordinaatti(6, 6, 6);
-        taulukko[6] = new Koordinaatti(4, 4, 4);
-        keko.setTaulukko(taulukko);
-        keko.setKoko(6);
-        keko.heapify(1);
+        Reittiopas opas = new Reittiopas(new Kartta("esim3.txt"));
+        opas.haeReitti();
+        System.out.println(opas);
     }
 
 }

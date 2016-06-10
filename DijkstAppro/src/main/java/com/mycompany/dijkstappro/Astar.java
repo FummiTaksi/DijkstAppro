@@ -20,7 +20,7 @@ public class Astar {
 
     private int[][] vierailu;
     private int[][] etaisyysAlusta;
-    private PriorityQueue<Koordinaatti> keko;
+    private Minimikeko keko;
     private Koordinaatti[][] parent;
     private Kartta kartta;
     private int[][] manhattan;      //ensin y, sitten x kuten muissakin taulukoissa.
@@ -43,7 +43,7 @@ public class Astar {
 //        System.out.println("loppu " + loppu);
         this.vierailu = new int[100][100];
         this.etaisyysAlusta = new int[100][100];
-        this.keko = new PriorityQueue();
+        this.keko = new Minimikeko();
         this.parent = new Koordinaatti[100][100];
         this.manhattan = new int[100][100];
         for (int leveys = 0; leveys < kartta.getKartta().length; leveys++) {
@@ -62,7 +62,7 @@ public class Astar {
         vieraile(alku.getX(), alku.getY(), 0, alku);
         while (vierailu[loppu.getY()][loppu.getX()] != 2) {
 //            System.out.println("loop");
-            Koordinaatti lahin = keko.poll();
+            Koordinaatti lahin = keko.poistaPienin();
 //            System.out.println("Lähin " + lahin);
             vierailu[lahin.getY()][lahin.getX()] = 2;
             vieraile(lahin.getX() - 1, lahin.getY() - 1, 14, lahin);
@@ -108,7 +108,7 @@ public class Astar {
             if (vierailu[y][x] == 0) {
                 //System.out.println("lisätään openListaan alkio x " + x + " y " + y);
                 etaisyysAlusta[y][x] = etaisyysAlusta[mista.getY()][mista.getX()] + arvo;
-                keko.add(new Koordinaatti(x, y, manhattan[y][x] + etaisyysAlusta[y][x]));
+                keko.lisaa(new Koordinaatti(x, y, manhattan[y][x] + etaisyysAlusta[y][x]));
 
                 vierailu[y][x] = 1;
 //                System.out.println("x " + x + " y " + y + " parent on " + mista);

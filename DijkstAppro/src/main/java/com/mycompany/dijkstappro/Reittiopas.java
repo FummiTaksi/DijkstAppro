@@ -51,29 +51,33 @@ public class Reittiopas {
 //        System.out.println("alku " + alku);
 //        System.out.println("loppu " + loppu);
 //        System.out.println("reitinHinta " + reitinHinta);
-        vierailu[alku.getId()] = 1;
-        reitti.add(alku);
+        ArrayDeque<Baari> uusiReitti = reitti.clone();
+        uusiReitti.add(alku);
+        int[] uusiVierailu = vierailu.clone();
+        uusiVierailu[alku.getId()] = 1;
         boolean kaikkiLoydetty = true;
         for (int i = 0; i < verkko.getKartta().getPaikkojenLkm(); i++) {
             Baari baari = verkko.getKartta().getBaarit()[i];
-            if (!baari.equals(loppu) && vierailu[baari.getId()] == 0) {
+            if (!baari.equals(loppu) && uusiVierailu[baari.getId()] == 0) {
+                //System.out.println("hellurei");
                     int reitinUusiHinta = reitinHinta + verkkoMatriisi[alku.getId()][baari.getId()];
                     if (reitinUusiHinta < halvinReitti) {
-                         etsiReitti(baari,loppu,vierailu,reitinUusiHinta,reitti);
+                         etsiReitti(baari,loppu,uusiVierailu,reitinUusiHinta,uusiReitti);
                     }
-                    kaikkiLoydetty = false;
-        
+                    kaikkiLoydetty = false;      
             }
 
         }
         if (kaikkiLoydetty) {
-            System.out.println("reitti loppui");
+//            System.out.println("reitti loppui");
+//            System.out.println("tämä on 86 " + verkkoMatriisi[alku.getId()][loppu.getId()]);
+//            System.out.println("reitinHinta " + reitinHinta);
             int reitinLopullinenHinta = reitinHinta + verkkoMatriisi[alku.getId()][loppu.getId()];
-            System.out.println("lopullinen hinta " + reitinLopullinenHinta);
+//            System.out.println("lopullinen hinta " + reitinLopullinenHinta);
             if (reitinLopullinenHinta < halvinReitti) {
                 halvinReitti = reitinLopullinenHinta;
-                reitti.add(loppu);
-                this.reittiJono = reitti;
+                uusiReitti.add(loppu);
+                this.reittiJono = uusiReitti;
             }
             
         }
@@ -96,7 +100,6 @@ public class Reittiopas {
 
         while(!reittiJono.isEmpty()) {
             Baari seuraava = reittiJono.poll();
-            
             palautus += "Baari " + kartta.getKartta()[seuraava.getY()][seuraava.getX()] + ", sijainti " + seuraava + "\n";
         }
         
