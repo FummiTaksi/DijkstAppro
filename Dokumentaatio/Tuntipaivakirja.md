@@ -14,4 +14,6 @@ Tuntipäiväkirja
 6.6 Minimikeko-luokan koodaaminen ja testaaminen 1,5h
 7.6 aStar ja Reittiopas luokka debugattu. 1,5h
 9.6 Kirjoitettu Reittioppaalle testejä. 45min
+12.6 Toteutus ja Testausdokumentaation kirjoittaminen, vertaisarvioinnin teko, javadocin kirjoittamista 2,5h
+
 
