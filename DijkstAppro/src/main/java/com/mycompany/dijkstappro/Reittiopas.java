@@ -37,10 +37,18 @@ public class Reittiopas {
         this.reitti = "";
     }
 
+    /**
+     * Palauttaa jonon, jossa approreitti on.
+     * @return
+     */
     public ArrayDeque<Baari> getJono() {
         return reittiJono;
     }
     
+    /**
+     * palauttaa halvimman reitin hinnan.
+     * @return
+     */
     public int getHalvimmanReitinHinta() {
         return halvinReitti;
     }
@@ -90,7 +98,7 @@ public class Reittiopas {
     }
     
     /**
-     *  
+     *  Hakee approreitin aloituspistestä lopetuspisteeseen.
      */
     public void haeReitti() {
         int[] vierailu = new int[verkko.getKartta().getPaikkojenLkm() + 1];
@@ -100,6 +108,10 @@ public class Reittiopas {
         etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,jono);
     }
     
+    /**
+     * Palauttaa reitin String muodossa.
+     * @return
+     */
     public String palautaReitti() {
         ArrayDeque<Baari> apu = reittiJono.clone();
         String palautus = "";
@@ -110,6 +122,10 @@ public class Reittiopas {
         return palautus;
     }
     
+    /**
+     * Palauttaa approreitin string muodossa.
+     * @return
+     */
     @Override
     public String toString() {
         String palautus = " Approreitti on seuraava: " + " \n";

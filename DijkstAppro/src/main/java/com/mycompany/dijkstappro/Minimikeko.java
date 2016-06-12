@@ -92,21 +92,33 @@ public class Minimikeko {
     }
 
     /**
-     *
+     * Palauttaa keon taulukon.
      * @return
      */
     public Koordinaatti[] getTaulukko() {
         return taulukko;
     }
 
+    /**
+     * Alustaa taulukon uudelleen. Käytetään testaamiseen.
+     * @param uusiTaulukko
+     */
     public void setTaulukko(Koordinaatti[] uusiTaulukko) {
         taulukko = uusiTaulukko;
     }
 
+    /**
+     * Palauttaa monta alkiota keossa on.
+     * @return
+     */
     public Integer getKoko() {
         return koko;
     }
 
+    /**
+     * Asettaa koon uudelleen.
+     * @param uusiKoko
+     */
     public void setKoko(int uusiKoko) {
         koko = uusiKoko;
     }

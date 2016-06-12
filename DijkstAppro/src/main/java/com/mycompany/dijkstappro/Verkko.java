@@ -27,6 +27,10 @@ public class Verkko {
         
     }
 
+    /**
+     * Muodostaa verkon ja palauttaa sen kaksiuloitteisessa taulukossa.
+     * @return
+     */
     public int[][] muodostaVerkko()  {
 //        System.out.println("metodissa");
         Astar tahti = new Astar(kartta);
@@ -53,15 +57,26 @@ public class Verkko {
         return etaisyysMatriisi;
     }
     
+    /**
+     * palauttaa verkon kaksiuloitteisessa taulukossa.
+     * @return
+     */
     public int[][] getVerkko() {
         return etaisyysMatriisi;
     }
     
+    /**
+     * palauttaa verkon muodostamiseen käytetyn kartan.
+     * @return
+     */
     public Kartta getKartta() {
         return kartta;
     }
     
-    
+    /**
+     * Asettaa luokalle uuden kartan.
+     * @param uusiKartta
+     */
     public void setKartta(Kartta uusiKartta) {
         this.kartta = uusiKartta;
     }

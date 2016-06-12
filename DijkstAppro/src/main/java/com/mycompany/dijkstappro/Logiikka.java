@@ -29,6 +29,9 @@ public class Logiikka {
         this.opas = new Reittiopas(kartta); 
     }
     
+    /**
+     * Tulostaa approreitin.
+     */
     public void tulostaReitti() {
         opas.haeReitti();
         System.out.println(opas);

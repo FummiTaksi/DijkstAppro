@@ -25,19 +25,37 @@ public class Astar {
     private Kartta kartta;
     private int[][] manhattan;      //ensin y, sitten x kuten muissakin taulukoissa.
 
+    /**
+     * Luokka saa parametrikseen kartan.
+     * @param kartta
+     */
     public Astar(Kartta kartta) {
         this.kartta = kartta;
     }
 
-   
+    /**
+     * Palauttaa kartan.
+     * @return
+     */
     public Kartta getKartta() {
         return kartta;
     }
     
+    /**
+     * Asettaa luokalle uuden Kartta-olion. 
+     *
+     * @param uusiKartta
+     */
     public void setKartta(Kartta uusiKartta) {
         this.kartta = uusiKartta;
     }
 
+    /**
+     * Laskee lyhyimman etaisyyden alku-koordinaatista loppukoordinaattiin Kartta-oliossa.
+     * @param alku
+     * @param loppu
+     * @return
+     */
     public int aStar(Koordinaatti alku, Koordinaatti loppu) {
 //        System.out.println("alku " + alku);
 //        System.out.println("loppu " + loppu);

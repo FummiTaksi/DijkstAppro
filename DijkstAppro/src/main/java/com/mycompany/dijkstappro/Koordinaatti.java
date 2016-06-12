@@ -27,14 +27,26 @@ public class Koordinaatti implements Comparable{
         this.hinta = hinta;
     }
     
+    /**
+     * Palauttaa x-koordinaatin
+     * @return
+     */
     public int getX() {
         return x;
     }
     
+    /**
+     * Palauttaa y-koordinaatin.
+     * @return
+     */
     public int getY() {
         return y;
     }
     
+    /**
+     * Palauttaa koordinaatin etäisyyshinnan.Tätä käytetään hyväksi aStar algoritmissa.
+     * @return
+     */
     public int getHinta() {
         return hinta;
     }

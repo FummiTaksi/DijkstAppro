@@ -24,6 +24,7 @@ public class Kartta {
     private Baari aloituspaikka;
     private Baari lopetuspaikka;
     /**
+     * Kartta muodostetaan tekstitiedosta konstruktorissa. Tiedostonnimi on parametrissa String-muodossa.
      * 
      * @param tiedosto
      * @throws FileNotFoundException
@@ -36,20 +37,28 @@ public class Kartta {
     }
 
     /**
-     * Metodi alustaa kartan kaksiulotteiseen taulukkoon tekstitiedostosta.
-     * @param tiedostonNimi
-     * @return
-     * @throws FileNotFoundException
+     * Palauttaa aloituspaikan.
+     *
      */
     
     public Baari getAloituspaikka() {
         return aloituspaikka;
     }
     
+    /**
+     * palauttaa Lopetuspaikan.
+     * @return
+     */
     public Baari getLopetuspaikka() {
         return lopetuspaikka;
     }
     
+    /**
+     * Palauttaa kartan taulukossa.Saa parametrina tiedoston nimen.
+     * @param tiedostonNimi
+     * @return
+     * @throws FileNotFoundException
+     */
     public char[][] kartanAlustus(String tiedostonNimi) throws FileNotFoundException {
         char[][] kartta = new char[100][100];
         Scanner lukija = new Scanner(new File(tiedostonNimi), "UTF-8");
@@ -83,6 +92,10 @@ public class Kartta {
         return kartta;
     }
     
+    /**
+     * Palauttaa kartan taulukkomuodossa.
+     * @return
+     */
     public char[][] getKartta() {
         return kartta;
     }
@@ -103,6 +116,10 @@ public class Kartta {
         return baarit;
     }
     
+    /**
+     * Käytetään testaamiseen.
+     * @return
+     */
     public String getTarkistus() {
         return tarkistus;
     }
