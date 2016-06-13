@@ -47,6 +47,10 @@ public class AstarTest {
     // @Test
     // public void hello() {}
     
+    public void alustaVaikeaTesti() throws FileNotFoundException {
+        aStar.setKartta(new Kartta("vaikea1.txt"));
+    }
+    
     @Test
     public void yksiOikealleEtaisyysOikein() {
         assertEquals(10,aStar.aStar(new Koordinaatti(1,1,0), new Koordinaatti(2,1,0)));
@@ -87,5 +91,65 @@ public class AstarTest {
     public void esim2adOikein2() throws FileNotFoundException {
         aStar.setKartta(new Kartta("esim2.txt"));
         assertEquals(48,aStar.aStar(new Koordinaatti(1,5,0), new Koordinaatti(3,1,0)));
+    }
+    
+    @Test
+    public void vaikea1amOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(30,aStar.aStar(new Koordinaatti(1,4,0), new Koordinaatti(1,7,0)));
+    }
+    
+    @Test
+    public void vaikea1mwOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(98,aStar.aStar(new Koordinaatti(1,7,9),new Koordinaatti(7,2,0)));
+    }
+    
+    @Test
+    public void vaikea1wyOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(78,aStar.aStar(new Koordinaatti(7,2,0), new Koordinaatti(14,4,0)));
+    }
+    
+    @Test
+    public void vaikea1yuOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(24,aStar.aStar(new Koordinaatti(14,4,0), new Koordinaatti(12,5,0)));
+    }
+    
+    @Test
+    public void vaikea1urOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(102,aStar.aStar(new Koordinaatti(12,5,0), new Koordinaatti(18,3,0)));
+    }
+    
+    @Test
+    public void vaikea1reOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(10,aStar.aStar((new Koordinaatti(18,3,0)), new Koordinaatti(18,2,0)));
+    }
+    
+    @Test
+    public void vaikea1eqOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(44,aStar.aStar(new Koordinaatti(18,2,0), new Koordinaatti(22,1,0)));
+    }
+    
+    @Test
+    public void vaikea1qbOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(134,aStar.aStar(new Koordinaatti(22,1,0), new Koordinaatti(35,2,0)));
+    }
+    
+    @Test
+    public void vaikea1btOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(64,aStar.aStar(new Koordinaatti(35,2,0), new Koordinaatti(29,3,0)));
+    }
+    
+    @Test
+    public void vaikea1tlOikein() throws FileNotFoundException {
+        alustaVaikeaTesti();
+        assertEquals(178,aStar.aStar(new Koordinaatti(29,3,0), new Koordinaatti(42,5,0)));
     }
 }

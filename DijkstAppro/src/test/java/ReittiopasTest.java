@@ -5,6 +5,7 @@
  */
 
 import com.mycompany.dijkstappro.Baari;
+import com.mycompany.dijkstappro.Jono;
 import com.mycompany.dijkstappro.Kartta;
 import com.mycompany.dijkstappro.Reittiopas;
 import java.io.FileNotFoundException;
@@ -60,37 +61,37 @@ public class ReittiopasTest {
     public void ensimmainenPaikkaOikein() {
         Baari aloitusPaikka = new Baari(1, 1, 0);
         opas.haeReitti();
-        assertTrue(aloitusPaikka.equals(opas.getJono().poll()));
+        assertTrue(aloitusPaikka.equals(opas.getJono().poistaEnsimmainen()));
     }
 
     @Test
     public void toinenPaikkaOikein() {
         Baari b = new Baari(3, 2, 1);
         opas.haeReitti();
-        ArrayDeque<Baari> jono = opas.getJono();
-        jono.poll();
-        assertTrue(b.equals(jono.poll()));
+        Jono jono = opas.getJono();
+        jono.poistaEnsimmainen();
+        assertTrue(b.equals(jono.poistaEnsimmainen()));
     }
 
     @Test
     public void kolmasPaikkaOikein() {
         Baari c = new Baari(6, 3, 2);
         opas.haeReitti();
-        ArrayDeque<Baari> jono = opas.getJono();
-        jono.poll();
-        jono.poll();
-        assertTrue(c.equals(jono.poll()));
+        Jono jono = opas.getJono();
+        jono.poistaEnsimmainen();
+        jono.poistaEnsimmainen();
+        assertTrue(c.equals(jono.poistaEnsimmainen()));
     }
 
     @Test
     public void lopetusPaikkaOikein() {
         Baari lopetus = new Baari(8, 3, 3);
         opas.haeReitti();
-        ArrayDeque<Baari> jono = opas.getJono();
+        Jono jono = opas.getJono();
         for (int i = 1; i <= 3; i++) {
-            jono.poll();
+            jono.poistaEnsimmainen();
         }
-        assertTrue(lopetus.equals(jono.poll()));
+        assertTrue(lopetus.equals(jono.poistaEnsimmainen()));
     }
 
     @Test
@@ -114,6 +115,11 @@ public class ReittiopasTest {
     @Test
     public void vaikea1ReittiOikein() throws FileNotFoundException {
         alustaTesti("vaikea1.txt");
-        assertEquals("amwyureqbtl",opas.palautaReitti());
+        assertEquals("amwuyreqbtl",opas.palautaReitti());
+    }
+    @Test
+    public void vaikea1ReitinHintaOikein() throws FileNotFoundException {
+        alustaTesti("vaikea1.txt");
+        assertEquals(736,opas.getHalvimmanReitinHinta());
     }
 }

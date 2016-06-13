@@ -21,7 +21,7 @@ public class Reittiopas {
     private Verkko verkko;
     private Kartta kartta;
     private int halvinReitti;
-    private ArrayDeque<Baari> reittiJono;
+    private Jono reittiJono;
     private String reitti;
 
     /**
@@ -37,11 +37,14 @@ public class Reittiopas {
         this.reitti = "";
     }
 
+    public char[][] getKartta() {
+        return kartta.getKartta();
+    }
     /**
      * Palauttaa jonon, jossa approreitti on.
      * @return
      */
-    public ArrayDeque<Baari> getJono() {
+    public Jono getJono() {
         return reittiJono;
     }
     
@@ -61,12 +64,12 @@ public class Reittiopas {
      * @param reitinHinta
      * @param reitti
      */
-    public void etsiReitti(Baari alku, Baari loppu, int[] vierailu, int reitinHinta, ArrayDeque<Baari> reitti) {
-//        System.out.println("alku " + alku);
+    public void etsiReitti(Baari alku, Baari loppu, int[] vierailu, int reitinHinta, Jono reitti) {
+//        System.out.println("alku " + getKartta()[alku.getY()][alku.getX()]);
 //        System.out.println("loppu " + loppu);
 //        System.out.println("reitinHinta " + reitinHinta);
-        ArrayDeque<Baari> uusiReitti = reitti.clone();
-        uusiReitti.add(alku);
+        Jono uusiReitti = reitti.kloonaa();
+        uusiReitti.lisaa(alku);
         int[] uusiVierailu = vierailu.clone();
         uusiVierailu[alku.getId()] = 1;
         boolean kaikkiLoydetty = true;
@@ -76,8 +79,10 @@ public class Reittiopas {
                 //System.out.println("hellurei");
                     int reitinUusiHinta = reitinHinta + verkkoMatriisi[alku.getId()][baari.getId()];
                     if (reitinUusiHinta < halvinReitti) {
+//                         System.out.println(uusiReitti.toString());
                          etsiReitti(baari,loppu,uusiVierailu,reitinUusiHinta,uusiReitti);
                     }
+//                    System.out.println("REITTI LOPPUI!");
                     kaikkiLoydetty = false;      
             }
 
@@ -89,8 +94,11 @@ public class Reittiopas {
             int reitinLopullinenHinta = reitinHinta + verkkoMatriisi[alku.getId()][loppu.getId()];
 //            System.out.println("lopullinen hinta " + reitinLopullinenHinta);
             if (reitinLopullinenHinta < halvinReitti) {
+                
                 halvinReitti = reitinLopullinenHinta;
-                uusiReitti.add(loppu);
+                uusiReitti.lisaa(loppu);
+//                System.out.println(uusiReitti);
+//                System.out.println("reitin hinta " + halvinReitti);
                 this.reittiJono = uusiReitti;
             }
             
@@ -104,8 +112,7 @@ public class Reittiopas {
         int[] vierailu = new int[verkko.getKartta().getPaikkojenLkm() + 1];
 //        System.out.println("aloituspaikka " + kartta.getAloituspaikka());
 //        System.out.println("lopetuspaikka " + kartta.getLopetuspaikka());
-        ArrayDeque<Baari> jono = new ArrayDeque();
-        etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,jono);
+        etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,new Jono());
     }
     
     /**
@@ -113,10 +120,10 @@ public class Reittiopas {
      * @return
      */
     public String palautaReitti() {
-        ArrayDeque<Baari> apu = reittiJono.clone();
+        Jono apu = reittiJono.kloonaa();
         String palautus = "";
-        while(!apu.isEmpty()) {
-            Baari seuraava = apu.poll();
+        while(!apu.onTyhja()) {
+            Baari seuraava = apu.poistaEnsimmainen();
             palautus += kartta.getKartta()[seuraava.getY()][seuraava.getX()];
         }
         return palautus;
@@ -129,9 +136,9 @@ public class Reittiopas {
     @Override
     public String toString() {
         String palautus = " Approreitti on seuraava: " + " \n";
-        ArrayDeque<Baari> apu = reittiJono.clone();
-        while(!apu.isEmpty()) {
-            Baari seuraava = apu.poll();
+        Jono apu = reittiJono.kloonaa();
+        while(!apu.onTyhja()) {
+            Baari seuraava = apu.poistaEnsimmainen();
             palautus += "Baari " + kartta.getKartta()[seuraava.getY()][seuraava.getX()] + ", sijainti " + seuraava + "\n";
         }
         
