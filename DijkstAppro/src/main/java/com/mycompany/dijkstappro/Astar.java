@@ -49,17 +49,12 @@ public class Astar {
     public void setKartta(Kartta uusiKartta) {
         this.kartta = uusiKartta;
     }
-
     /**
-     * Laskee lyhyimman etaisyyden alku-koordinaatista loppukoordinaattiin Kartta-oliossa.
-     * @param alku
-     * @param loppu
-     * @return
+     * Alustaa aStar algoritmiin tarvittavat taulukot ja minimikeon.
+     * 
      */
-    public int aStar(Koordinaatti alku, Koordinaatti loppu) {
-//        System.out.println("alku " + alku);
-//        System.out.println("loppu " + loppu);
-        this.vierailu = new int[100][100];
+    public void alustus(Koordinaatti loppu) {
+            this.vierailu = new int[100][100];
         this.etaisyysAlusta = new int[100][100];
         this.keko = new Minimikeko();
         this.parent = new Koordinaatti[100][100];
@@ -73,12 +68,23 @@ public class Astar {
             }
 
         }
-//        System.out.println("manhattan alustettu");
+    }
 
+    /**
+     * Laskee lyhyimman etaisyyden alku-koordinaatista loppukoordinaattiin Kartta-oliossa.
+     * @param alku
+     * @param loppu
+     * @return
+     */
+    public int aStar(Koordinaatti alku, Koordinaatti loppu) {
+//        System.out.println("alku " + alku);
+//        System.out.println("loppu " + loppu);
+          alustus(loppu); 
+//        System.out.println("manhattan alustettu");
 //        System.out.println("alkuX " + alku.getX() + " alkuY " + alku.getY());
 //        System.out.println("loppuX " + loppu.getX() + " loppuY " + loppu.getY());
         vieraile(alku.getX(), alku.getY(), 0, alku);
-        while (vierailu[loppu.getY()][loppu.getX()] != 2) {
+        while (vierailu[loppu.getY()][loppu.getX()] != 2) {   // Loopissa lasketaan lähellä olevien koordinaattien hintoja ja edetään edullisimpaan koordinaattiin.
 //            System.out.println("loop");
             Koordinaatti lahin = keko.poistaPienin();
 //            System.out.println("Lähin " + lahin);
@@ -95,7 +101,7 @@ public class Astar {
 
 //        System.out.println("loppukoordinaatti löydetty");
         int palautus = 0;
-        while (!loppu.equals(alku)) {
+        while (!loppu.equals(alku)) {                   // Edetään loppupisteestä alkuun ja lasketaan reitin hinta.
 //            System.out.println("x " + loppu.getX() + " y " + loppu.getY());
             Koordinaatti seuraava = parent[loppu.getY()][loppu.getX()];
             int liike = Math.abs(seuraava.getX() - loppu.getX()) + Math.abs(seuraava.getY() - loppu.getY());
@@ -122,6 +128,7 @@ public class Astar {
 
 //        System.out.println("y " + y + " x " + x);
 //        
+//         System.out.println("tässä ruudussa on " + kartta.getKartta()[y][x]);
         if (kartta.getKartta()[y][x] != '#' && vierailu[y][x] != 2) {
             if (vierailu[y][x] == 0) {
                 //System.out.println("lisätään openListaan alkio x " + x + " y " + y);

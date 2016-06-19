@@ -51,6 +51,7 @@ public class Minimikeko {
             heapify(1);
             return palautus;
         }
+        
         return null;
     }
 

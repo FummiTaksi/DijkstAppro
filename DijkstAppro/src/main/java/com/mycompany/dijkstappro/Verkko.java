@@ -37,11 +37,11 @@ public class Verkko {
         int nousu = 0;
         while (nousu < kartta.getPaikkojenLkm()) {
 //            System.out.println("loopissa");
-            Baari yksi = kartta.getBaarit()[nousu];
+            Baari yksi = kartta.getPaikat()[nousu];
             for (int i = nousu + 1 ; i < kartta.getPaikkojenLkm() ; i++) {
 //                System.out.println("forissa");
                 
-                Baari kaksi = kartta.getBaarit()[i];
+                Baari kaksi = kartta.getPaikat()[i];
 //                System.out.println("toinen baari määritelty");
                 Koordinaatti alkupiste = new Koordinaatti(yksi.getX(),yksi.getY(),0);
                 Koordinaatti loppupiste = new Koordinaatti(kaksi.getX(),kaksi.getY(),0);

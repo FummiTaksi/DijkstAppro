@@ -19,23 +19,25 @@ import static org.junit.Assert.*;
  * @author mustonea
  */
 public class KarttaTest {
+
     private Kartta kartta;
+
     public KarttaTest() throws FileNotFoundException {
         this.kartta = new Kartta("karttaTesti.txt");
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -45,47 +47,49 @@ public class KarttaTest {
     //
     // @Test
     // public void hello() {}
-    
     @Test
     public void karttaOikeassaMuodossa() {
-        String oikea = "##a##" + "\n" + "####l" +"\n";
-        assertEquals(oikea,kartta.getTarkistus());
+        String oikea = "##a##" + "\n" + "####l" + "\n";
+        assertEquals(oikea, kartta.getTarkistus());
     }
-    
-    @Test
-    public void paikkojenMaaraOikea() {
-        assertEquals(2,kartta.getPaikkojenLkm());
-    }
-    
+
     @Test
     public void aloituspaikanXOikein() {
-       assertEquals(2,kartta.getBaarit()[0].getX());
+        assertEquals(2, kartta.getPaikat()[0].getX());
     }
-    
+
     @Test
     public void aloituspaikanYoikein() {
-        assertEquals(0,kartta.getBaarit()[0].getY());
+        assertEquals(0, kartta.getPaikat()[0].getY());
     }
-    
+
 //    @Test
 //    public void aloituspaikanKirjainoikein() {
 //        assertEquals("a",kartta.getBaarit()[0].toString());
 //    }
-    
     @Test
     public void lopetuspaikanXOikein() {
-        assertEquals(4,kartta.getBaarit()[1].getX());
+        assertEquals(4, kartta.getPaikat()[1].getX());
     }
-    
+
     @Test
     public void lopetuspaikanYOikein() {
-        assertEquals(1,kartta.getBaarit()[1].getY());
+        assertEquals(1, kartta.getPaikat()[1].getY());
     }
-    
+
+    @Test
+    public void esim2BaarienLkmOikein() throws FileNotFoundException {
+        Kartta esim2 = new Kartta("esim2.txt");
+        assertEquals(4, esim2.getBaarienLkm());
+    }
+
+    @Test
+    public void karttaTesti1BaarienLkmOikein() {
+        assertEquals(0, kartta.getBaarienLkm());
+    }
+
 //    @Test
 //    public void lopetuspaikanKirjainoikein() {
 //        assertEquals("l",kartta.getBaarit()[1].toString());
 //    }
-    
-    
 }

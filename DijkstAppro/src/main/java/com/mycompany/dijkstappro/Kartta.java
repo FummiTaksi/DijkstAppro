@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class Kartta {
 
     private char[][] kartta;      // ensin y, sitten x kuten kaikissa muissa taulukoissa.
-    private Baari[] baarit;       
+    private Baari[] paikat;       
     private int paikkojenLkm;    // kuvaa kuinka monta baaria , aloitus ja lopetuspaikkaa on .
     private String tarkistus;    // käytetään vain testaamiseen.
     private Baari aloituspaikka;
@@ -30,7 +30,7 @@ public class Kartta {
      * @throws FileNotFoundException
      */
     public Kartta(String tiedosto) throws FileNotFoundException {
-        this.baarit = new Baari[100];
+        this.paikat = new Baari[100];
         this.paikkojenLkm = 0;
         this.tarkistus = "";
         this.kartta = kartanAlustus(tiedosto);
@@ -74,13 +74,14 @@ public class Kartta {
 //                    System.out.println("x " + i + " y " + riviNro);
                     this.aloituspaikka = new Baari(i,riviNro,paikkojenLkm);
                 }
-                if (kirjain == 'l') {
+                 if (kirjain == 'l') {
 //                    System.out.println("l");
 //                    System.out.println("x " + i + " y " + riviNro);
                     this.lopetuspaikka = new Baari(i,riviNro,paikkojenLkm);
                 }
-                if (kirjain != '#' && kirjain != '.') {
-                    baarit[paikkojenLkm] = new Baari(i, riviNro,paikkojenLkm);
+                 if (kirjain != '#' && kirjain != '.') {
+//                     System.out.println("kirjain  " + kirjain);
+                    paikat[paikkojenLkm] = new Baari(i, riviNro,paikkojenLkm);
                     paikkojenLkm++;
                 }
                 kartta[riviNro][i] = rivi.charAt(i);
@@ -101,19 +102,24 @@ public class Kartta {
     }
     
     /**
-     * Palauttaa aloituspaikan,lopetuspaikan ja baarien lukumaaran summan.
+     * Palauttaa paikkojen lukumaaran.
      * @return
      */
     public int getPaikkojenLkm() {
         return paikkojenLkm;
     }
     
+    public int getBaarienLkm() {
+        return paikkojenLkm - 2;
+    }
+    
+    
     /**
      * Palauttaa taulukon kartan Baari-olioista.
      * @return
      */
-    public Baari[] getBaarit() {
-        return baarit;
+    public Baari[] getPaikat() {
+        return paikat;
     }
     
     /**

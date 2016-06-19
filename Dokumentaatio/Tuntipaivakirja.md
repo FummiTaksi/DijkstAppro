@@ -34,5 +34,5 @@ Tuntipäiväkirja
 
 13.6 Jono-tietorakenteen koodaus,kommentointi ja testaus. Reittiopas ja Astar testien täydentäminen. Suorituskykytestauksen aloittaminen 3h
 
-
+18.6 Debuggaamista ja uuden toiminnallisuuden koodaamista ja testaamista. 3h
 

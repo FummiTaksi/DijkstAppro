@@ -16,14 +16,20 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
-//        Reittiopas opas = new Reittiopas(new Kartta("vaikea1.txt"));
-//        opas.haeReitti();
-//        System.out.println(opas);
+       Kartta kartta = new Kartta("vaikea1.txt");
+       Reittiopas opas = new Reittiopas(kartta);
+        System.out.println("awureql " + opas.reitinHinta("awureql"));
+        System.out.println("auyreql " + opas.reitinHinta("auyreql"));
+        
+        
+        
 
-          Suorituskyky testi = new Suorituskyky();
-          System.out.println("aikaa kului " + testi.reitinHaku("vaikea1.txt"));
   
           
+    }
+    
+    public static void lol() {
+        System.out.println("lol");
     }
 
 }
