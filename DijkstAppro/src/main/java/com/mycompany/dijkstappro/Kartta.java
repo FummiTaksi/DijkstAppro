@@ -18,11 +18,11 @@ import java.util.Scanner;
 public class Kartta {
 
     private char[][] kartta;      // ensin y, sitten x kuten kaikissa muissa taulukoissa.
-    private Baari[] paikat;       
+    private Koordinaatti[] paikat;       
     private int paikkojenLkm;    // kuvaa kuinka monta baaria , aloitus ja lopetuspaikkaa on .
     private String tarkistus;    // käytetään vain testaamiseen.
-    private Baari aloituspaikka;
-    private Baari lopetuspaikka;
+    private Koordinaatti aloituspaikka;
+    private Koordinaatti lopetuspaikka;
     /**
      * Kartta muodostetaan tekstitiedosta konstruktorissa. Tiedostonnimi on parametrissa String-muodossa.
      * 
@@ -30,7 +30,7 @@ public class Kartta {
      * @throws FileNotFoundException
      */
     public Kartta(String tiedosto) throws FileNotFoundException {
-        this.paikat = new Baari[100];
+        this.paikat = new Koordinaatti[100];
         this.paikkojenLkm = 0;
         this.tarkistus = "";
         this.kartta = kartanAlustus(tiedosto);
@@ -41,7 +41,7 @@ public class Kartta {
      *
      */
     
-    public Baari getAloituspaikka() {
+    public Koordinaatti getAloituspaikka() {
         return aloituspaikka;
     }
     
@@ -49,7 +49,7 @@ public class Kartta {
      * palauttaa Lopetuspaikan.
      * @return
      */
-    public Baari getLopetuspaikka() {
+    public Koordinaatti getLopetuspaikka() {
         return lopetuspaikka;
     }
     
@@ -67,21 +67,24 @@ public class Kartta {
             String rivi = lukija.nextLine();
             tarkistus += rivi + "\n";
             for (int i = 0; i < rivi.length(); i++) {
+                Koordinaatti uusi = new Koordinaatti(i,riviNro);
                 char kirjain = rivi.charAt(i);
 //                System.out.print(kirjain);
                 if (kirjain == 'a') {
 //                    System.out.println("a");
 //                    System.out.println("x " + i + " y " + riviNro);
-                    this.aloituspaikka = new Baari(i,riviNro,paikkojenLkm);
+                    this.aloituspaikka = uusi;
                 }
                  if (kirjain == 'l') {
 //                    System.out.println("l");
 //                    System.out.println("x " + i + " y " + riviNro);
-                    this.lopetuspaikka = new Baari(i,riviNro,paikkojenLkm);
+                    this.lopetuspaikka = uusi;
                 }
                  if (kirjain != '#' && kirjain != '.') {
 //                     System.out.println("kirjain  " + kirjain);
-                    paikat[paikkojenLkm] = new Baari(i, riviNro,paikkojenLkm);
+                    uusi.setId(paikkojenLkm);
+                    paikat[paikkojenLkm] = uusi;
+                    
                     paikkojenLkm++;
                 }
                 kartta[riviNro][i] = rivi.charAt(i);
@@ -115,10 +118,10 @@ public class Kartta {
     
     
     /**
-     * Palauttaa taulukon kartan Baari-olioista.
+     * Palauttaa taulukon kartan Baareista ja aloitus ja lopetuspaikasta, jotka ovat Koordinaatti-olioita.
      * @return
      */
-    public Baari[] getPaikat() {
+    public Koordinaatti[] getPaikat() {
         return paikat;
     }
     

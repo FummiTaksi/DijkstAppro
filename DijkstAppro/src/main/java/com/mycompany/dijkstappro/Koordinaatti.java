@@ -13,6 +13,7 @@ public class Koordinaatti implements Comparable{
     private int x;
     private int y;
     private int hinta;
+    private int id;
    
 
     /**
@@ -21,7 +22,12 @@ public class Koordinaatti implements Comparable{
      * @param y
      * @param hinta Hinta on Manhattan-etaisyys loppupisteeseen + etaisyys alkupisteeseen.
      */
-    public Koordinaatti(int x, int y,int hinta) {
+    public Koordinaatti(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+    
+    public Koordinaatti(int x,int y,int hinta) {
         this.x = x;
         this.y = y;
         this.hinta = hinta;
@@ -49,6 +55,27 @@ public class Koordinaatti implements Comparable{
      */
     public int getHinta() {
         return hinta;
+    }
+    /**
+     * Asettaa hinta-olioksi uuden hinnan.
+     * @param uusiHinta 
+     */
+    public void setHinta(int uusiHinta) {
+        this.hinta = uusiHinta;
+    }
+    /**
+     * Asettaa koordinaati-oliolle id:n , jolla se erotetaan muista Koordinaatti-olioista.
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+    /**
+     * palauttaa id:n.
+     * @return 
+     */
+    public int getId() {
+        return id;
     }
         
     @Override

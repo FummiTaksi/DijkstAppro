@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-import com.mycompany.dijkstappro.Baari;
+
 import com.mycompany.dijkstappro.Kartta;
 import java.io.FileNotFoundException;
 import org.junit.After;

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-import com.mycompany.dijkstappro.Baari;
 import com.mycompany.dijkstappro.Jono;
 import com.mycompany.dijkstappro.Kartta;
+import com.mycompany.dijkstappro.Koordinaatti;
 import com.mycompany.dijkstappro.Reittiopas;
 import java.io.FileNotFoundException;
 import java.util.ArrayDeque;
@@ -64,14 +64,14 @@ public class ReittiopasTest {
 
     @Test
     public void ensimmainenPaikkaOikein() {
-        Baari aloitusPaikka = new Baari(1, 1, 0);
+        Koordinaatti aloitusPaikka = new Koordinaatti(1, 1);
         opas.haeReitti();
         assertTrue(aloitusPaikka.equals(opas.getJono().poistaEnsimmainen()));
     }
 
     @Test
     public void toinenPaikkaOikein() {
-        Baari b = new Baari(3, 2, 1);
+        Koordinaatti b = new Koordinaatti(3, 2);
         opas.haeReitti();
         Jono jono = opas.getJono();
         jono.poistaEnsimmainen();
@@ -80,7 +80,7 @@ public class ReittiopasTest {
 
     @Test
     public void kolmasPaikkaOikein() {
-        Baari c = new Baari(6, 3, 2);
+        Koordinaatti c = new Koordinaatti(6, 3);
         opas.haeReitti();
         Jono jono = opas.getJono();
         jono.poistaEnsimmainen();
@@ -90,7 +90,7 @@ public class ReittiopasTest {
 
     @Test
     public void lopetusPaikkaOikein() {
-        Baari lopetus = new Baari(8, 3, 3);
+        Koordinaatti lopetus = new Koordinaatti(8, 3);
         opas.haeReitti();
         Jono jono = opas.getJono();
         for (int i = 1; i <= 3; i++) {
@@ -167,6 +167,12 @@ public class ReittiopasTest {
         assertEquals("areql",opas.palautaReitti());
     }
     
+    @Test 
+    public void vaikea1KolmellaBaarillaHintaOikein() throws FileNotFoundException {
+        haeReitti("vaikea1.txt",3);
+        assertEquals(494,opas.getHalvimmanReitinHinta());
+    }
+    
     @Test
     public void vaikea1NeljallaBaarillaOikein() throws FileNotFoundException {
         haeReitti("vaikea1.txt",4);
@@ -176,6 +182,12 @@ public class ReittiopasTest {
     @Test
     public void vaikea1ViidellaBaarillaOikein() throws FileNotFoundException {
         haeReitti("vaikea1.txt",5);
-        assertEquals("auyreql",opas.palautaReitti());
+        assertEquals("awureql",opas.palautaReitti());
+    }
+    
+    @Test
+    public void vaikea1ViidellaBaarillaHintaOikein() throws FileNotFoundException {
+        haeReitti("vaikea1.txt",5);
+        assertEquals(502,opas.getHalvimmanReitinHinta());
     }
 }

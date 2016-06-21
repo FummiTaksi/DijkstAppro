@@ -6,12 +6,12 @@
 package com.mycompany.dijkstappro;
 
 /**
- * Jono pitää sisällään baareja. Jonon loppuun voi lisätä ja alusta poistaa.
+ * Jono pitää sisällään baareja jotka ovat Koordinaatti-olioita. Jonon loppuun voi lisätä ja alusta poistaa.
  * @author mustonea
  */
 public class Jono {
 
-    private Baari[] taulukko;
+    private Koordinaatti[] taulukko;
     private int alku;
     private int loppu;
 
@@ -19,7 +19,7 @@ public class Jono {
      * Taulukko alustetaan ja alku ja loppuideksi nollaan.
      */
     public Jono() {
-        this.taulukko = new Baari[100];
+        this.taulukko = new Koordinaatti[100];
         this.alku = 0;
         this.loppu = 0;
     }
@@ -30,7 +30,7 @@ public class Jono {
      * @param loppu
      * @param taulukko
      */
-    public Jono(int alku, int loppu, Baari[] taulukko) {
+    public Jono(int alku, int loppu, Koordinaatti[] taulukko) {
         this.taulukko = taulukko;
         this.alku = alku;
         this.loppu = loppu;
@@ -40,7 +40,7 @@ public class Jono {
      * metodi lisää Baarin jonon loppuun.
      * @param baari
      */
-    public void lisaa(Baari baari) {
+    public void lisaa(Koordinaatti baari) {
         taulukko[loppu] = baari;
         loppu++;
     }
@@ -49,7 +49,7 @@ public class Jono {
      * poistaa ja palauttaa jonon ensimmäisen alkion.
      * @return
      */
-    public Baari poistaEnsimmainen() {
+    public Koordinaatti poistaEnsimmainen() {
         if (alku == loppu) {
             return null;
         }
@@ -70,7 +70,7 @@ public class Jono {
      * @return
      */
     public Jono kloonaa() {
-        Baari[] kopioTaulukko = new Baari[100];
+        Koordinaatti[] kopioTaulukko = new Koordinaatti[100];
         for (int i = alku; i <= loppu; i++) {
             kopioTaulukko[i] = taulukko[i];
         }

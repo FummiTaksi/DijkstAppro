@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-import com.mycompany.dijkstappro.Baari;
 import com.mycompany.dijkstappro.Jono;
+import com.mycompany.dijkstappro.Koordinaatti;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -46,8 +46,8 @@ public class JonoTest {
     // public void hello() {}
     
     public void alustaTesti() {
-        jono.lisaa(new Baari(1,1,1));
-        jono.lisaa(new Baari(2,2,2));
+        jono.lisaa(new Koordinaatti(1,1,1));
+        jono.lisaa(new Koordinaatti(2,2,2));
     }
     @Test
     public void alussaTyhja() {
@@ -56,14 +56,14 @@ public class JonoTest {
     
     @Test
     public void lisataanYksiEiOleTyhja() {
-        jono.lisaa(new Baari(1,1,1));
+        jono.lisaa(new Koordinaatti(1,1,1));
         assertFalse(jono.onTyhja());
     }
     
     @Test
     public void poistetaanOikeaAlkio() {
         alustaTesti();
-        assertTrue(jono.poistaEnsimmainen().equals(new Baari(1,1,1)));
+        assertTrue(jono.poistaEnsimmainen().equals(new Koordinaatti(1,1,1)));
     }
     
     @Test
@@ -86,23 +86,23 @@ public class JonoTest {
         alustaTesti();
         jono.poistaEnsimmainen();
         jono.poistaEnsimmainen();
-        jono.lisaa(new Baari(3,3,3));
-        assertTrue(jono.poistaEnsimmainen().equals(new Baari(3,3,3)));
+        jono.lisaa(new Koordinaatti(3,3,3));
+        assertTrue(jono.poistaEnsimmainen().equals(new Koordinaatti(3,3,3)));
     }
     
     @Test
     public void lisataanYksiLisaaJaPoistetaanOikeaAlkio() {
         alustaTesti();
         jono.poistaEnsimmainen();
-        jono.lisaa(new Baari(3,3,3));
-        assertTrue(jono.poistaEnsimmainen().equals(new Baari(2,2,2)));
+        jono.lisaa(new Koordinaatti(3,3,3));
+        assertTrue(jono.poistaEnsimmainen().equals(new Koordinaatti(2,2,2)));
     }
     
     @Test
     public void lisataanJaPoistetaanEiOleTyhja() {
         alustaTesti();
         jono.poistaEnsimmainen();
-        jono.lisaa(new Baari(3,3,3));
+        jono.lisaa(new Koordinaatti(3,3,3));
         jono.poistaEnsimmainen();
         assertFalse(jono.onTyhja());
     }
@@ -111,15 +111,15 @@ public class JonoTest {
     public void poistetaanViimeinenOnOikein() {
         alustaTesti();
         jono.poistaEnsimmainen();
-        jono.lisaa(new Baari(3,3,3));
+        jono.lisaa(new Koordinaatti(3,3,3));
         jono.poistaEnsimmainen();
-        assertEquals(jono.poistaEnsimmainen(),new Baari(3,3,3));
+        assertEquals(jono.poistaEnsimmainen(),new Koordinaatti(3,3,3));
     }
     @Test
     public void poistetaanViimeinenOnTyhja() {
         alustaTesti();
         jono.poistaEnsimmainen();
-        jono.lisaa(new Baari(3,3,3));
+        jono.lisaa(new Koordinaatti(3,3,3));
         jono.poistaEnsimmainen();
         jono.poistaEnsimmainen();
         assertTrue(jono.onTyhja());
@@ -129,8 +129,8 @@ public class JonoTest {
     public void lisaysToimiiTyhjennyksenJalkeen() {
         jono.poistaEnsimmainen();
         jono.poistaEnsimmainen();
-        jono.lisaa(new Baari(3,3,3));
-        assertTrue(jono.poistaEnsimmainen().equals(new Baari(3,3,3)));
+        jono.lisaa(new Koordinaatti(3,3,3));
+        assertTrue(jono.poistaEnsimmainen().equals(new Koordinaatti(3,3,3)));
     }
     
     @Test
@@ -143,14 +143,14 @@ public class JonoTest {
     public void kloonausTuottaaOikean1() {
         alustaTesti();
         Jono klooni = jono.kloonaa();
-        assertTrue(klooni.poistaEnsimmainen().equals(new Baari(1,1,1)));
+        assertTrue(klooni.poistaEnsimmainen().equals(new Koordinaatti(1,1,1)));
     }
     @Test
     public void kloonausTuottaaOikean2() {
         alustaTesti();
         Jono klooni = jono.kloonaa();
         klooni.poistaEnsimmainen();
-        assertTrue(klooni.poistaEnsimmainen().equals(new Baari(2,2,2)));
+        assertTrue(klooni.poistaEnsimmainen().equals(new Koordinaatti(2,2,2)));
     }
     
     @Test
@@ -158,7 +158,7 @@ public class JonoTest {
         alustaTesti();
         Jono klooni = jono.kloonaa();
         klooni.poistaEnsimmainen();
-        assertTrue(jono.poistaEnsimmainen().equals(new Baari(1,1,1)));
+        assertTrue(jono.poistaEnsimmainen().equals(new Koordinaatti(1,1,1)));
     }
     
     @Test
@@ -166,14 +166,14 @@ public class JonoTest {
         alustaTesti();
         Jono klooni = jono.kloonaa();
         jono.poistaEnsimmainen();
-        assertTrue(klooni.poistaEnsimmainen().equals(new Baari(1,1,1)));
+        assertTrue(klooni.poistaEnsimmainen().equals(new Koordinaatti(1,1,1)));
     }
     
     @Test
     public void klooniinLisaaminenEiLisaaAlkuperaiseen() {
         alustaTesti();
         Jono klooni = jono.kloonaa();
-        klooni.lisaa(new Baari(3,3,3));
+        klooni.lisaa(new Koordinaatti(3,3,3));
         jono.poistaEnsimmainen();
         jono.poistaEnsimmainen();
         assertTrue(jono.onTyhja());
@@ -183,7 +183,7 @@ public class JonoTest {
     public void alkuperaiseenLisaaminenEiLisaaKlooniin() {
         alustaTesti();
         Jono klooni = jono.kloonaa();
-        jono.lisaa(new Baari(3,3,3));
+        jono.lisaa(new Koordinaatti(3,3,3));
         klooni.poistaEnsimmainen();
         klooni.poistaEnsimmainen();
         assertTrue(klooni.onTyhja());

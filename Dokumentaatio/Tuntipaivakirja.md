@@ -36,3 +36,7 @@ Tuntipäiväkirja
 
 18.6 Debuggaamista ja uuden toiminnallisuuden koodaamista ja testaamista. 3h
 
+20.6 Debuggaamista. 1h 45min
+
+21.6 Käyttöohjeet kirjoitettu, käyttöliittymää koodattu. 2h
+

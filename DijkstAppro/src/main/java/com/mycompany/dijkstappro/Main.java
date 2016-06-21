@@ -16,16 +16,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
-       Kartta kartta = new Kartta("vaikea1.txt");
-       Reittiopas opas = new Reittiopas(kartta);
-        System.out.println("awureql " + opas.reitinHinta("awureql"));
-        System.out.println("auyreql " + opas.reitinHinta("auyreql"));
-        
-        
-        
-
-  
-          
+          Kayttoliittyma liittyma = new Kayttoliittyma();    
     }
     
     public static void lol() {

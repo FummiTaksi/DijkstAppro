@@ -23,17 +23,42 @@ public class Logiikka {
      * @throws FileNotFoundException
      */
     public Logiikka(String tiedostonNimi) throws FileNotFoundException {
-        this.kartta = new Kartta(tiedostonNimi);
-        this.verkko  = new Verkko(kartta);
-        this.tahti = new Astar(kartta);
-        this.opas = new Reittiopas(kartta); 
+        setKartta(tiedostonNimi);
     }
     
+    /**
+     * Alustaa kaikki reittioppaan tarvitsemat apuoliot tekstitiedostossa olevalle kartalle.
+     * @param uusiKartta
+     * @throws FileNotFoundException 
+     */
+    public void setKartta(String uusiKartta) throws FileNotFoundException {
+        this.kartta = new Kartta(uusiKartta);
+        this.verkko = new Verkko(kartta);
+        this.tahti= new Astar(kartta);
+        this.opas = new Reittiopas(kartta);
+    }
+    
+    /**
+     * Palauttaa kartta-olion.
+     * @return 
+     */
+    public Kartta getKartta() {
+        return kartta;
+    }
     /**
      * Tulostaa approreitin.
      */
     public void tulostaReitti() {
         opas.haeReitti();
+        System.out.println(opas);
+    }
+    
+    /**
+     *  Tulostaa approreitin, jossa on parametrin verran baareja.
+     * @param baarienMaara 
+     */
+    public void tulostaReitti(int baarienMaara) {
+        opas.haeReitti(baarienMaara);
         System.out.println(opas);
     }
 }

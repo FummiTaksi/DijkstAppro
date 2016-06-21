@@ -45,6 +45,7 @@ public class Reittiopas {
     public int getBaarienMaara() {
         return kartta.getBaarienLkm();
     }
+
     /**
      * Palauttaa jonon, jossa approreitti on.
      *
@@ -62,29 +63,39 @@ public class Reittiopas {
     public int getHalvimmanReitinHinta() {
         return halvinReitti;
     }
+
     /**
-      Laskee kirjainten muodostaman reitin hinnan.
-    */
+     * Laskee kirjainten muodostaman reitin hinnan.
+     */
     public int reitinHinta(String reitti) {
         Astar aStar = new Astar(kartta);
         int palautus = 0;
-        for (int i = 0; i < reitti.length() - 2;i++) {
+        for (int i = 0; i < reitti.length() - 2; i++) {
             char eka = reitti.charAt(i);
-            char toka =reitti.charAt(i + 1);
-            Koordinaatti alku = new Koordinaatti(0,0,0);
-            Koordinaatti loppu = new Koordinaatti(0,0,0);
-            for (int j = 0; j < kartta.getPaikkojenLkm();j++) {
-                Baari baari = kartta.getPaikat()[j];
-//                System.out.println("Baari " + baari);
-                char baarinKirjain = kartta.getKartta()[baari.getY()][baari.getX()];
-                if (baarinKirjain == eka) {
-                    alku = new Koordinaatti(baari.getX(),baari.getY(),0);
-                }
-                if (baarinKirjain == toka) {
-                    loppu = new Koordinaatti(baari.getX(),baari.getY(),0);
-                }
+            if (eka == 'l') {
+                break;
             }
+            char toka = reitti.charAt(i + 1);
+            Koordinaatti alku = new Koordinaatti(0, 0);
+            Koordinaatti loppu = new Koordinaatti(0, 0);
+            for (int j = 0; j < kartta.getPaikkojenLkm() + 1; j++) {
+                Koordinaatti lapiKaytava = kartta.getPaikat()[j];
+//                System.out.println("Baari " + baari);
+               
+                    char baarinKirjain = kartta.getKartta()[lapiKaytava.getY()][lapiKaytava.getX()];
+                    if (baarinKirjain == eka) {
+                        alku = lapiKaytava;
+                    }
+                    if (baarinKirjain == toka) {
+                        loppu = lapiKaytava;
+                    }
+                
+
+            }
+            System.out.println("alku " + alku);
+            System.out.println("loppu " + loppu);
             palautus += aStar.aStar(alku, loppu);
+
         }
         return palautus;
     }
@@ -98,33 +109,33 @@ public class Reittiopas {
      * @param reitinHinta
      * @param reitti
      */
-    public void etsiReitti(Baari alku, Baari loppu, int[] vierailu, int reitinHinta, Jono reitti, int baarejaJaljella) {
+    public void etsiReitti(Koordinaatti alku, Koordinaatti loppu, int[] vierailu, int reitinHinta, Jono reitti, int baarejaJaljella) {
 //        System.out.println("alku " + getKartta()[alku.getY()][alku.getX()]);
 //        System.out.println("loppu " + loppu);
 //        System.out.println("reitinHinta " + reitinHinta);
-        
+
         if (baarejaJaljella > 0) {
-             Jono uusiReitti = reitti.kloonaa();
+            Jono uusiReitti = reitti.kloonaa();
             uusiReitti.lisaa(alku);
             int[] uusiVierailu = vierailu.clone();
             uusiVierailu[alku.getId()] = 1;
-            boolean kaikkiLoydetty = true;
             for (int i = 0; i < verkko.getKartta().getPaikkojenLkm(); i++) {
-                Baari baari = verkko.getKartta().getPaikat()[i];
-                if (!baari.equals(loppu) && uusiVierailu[baari.getId()] == 0) {
+                Koordinaatti lapiKaytava = verkko.getKartta().getPaikat()[i];
+//                System.out.println(lapiKaytava);
+                if (!lapiKaytava.equals(loppu) && uusiVierailu[lapiKaytava.getId()] == 0) {
                     //System.out.println("hellurei");
-                    int reitinUusiHinta = reitinHinta + verkkoMatriisi[alku.getId()][baari.getId()];
+                    int reitinUusiHinta = reitinHinta + verkkoMatriisi[alku.getId()][lapiKaytava.getId()];
                     if (reitinUusiHinta < halvinReitti) {
 //                         System.out.println(uusiReitti.toString());
-                        etsiReitti(baari, loppu, uusiVierailu, reitinUusiHinta, uusiReitti, baarejaJaljella - 1);
+                        etsiReitti(lapiKaytava, loppu, uusiVierailu, reitinUusiHinta, uusiReitti, baarejaJaljella - 1);
                     }
 //                    System.out.println("REITTI LOPPUI!");
-                    kaikkiLoydetty = false;
+
                 }
 
             }
         } else if (baarejaJaljella == 0) {
-              Jono uusiReitti = reitti.kloonaa();
+            Jono uusiReitti = reitti.kloonaa();
 //            System.out.println("reitti loppui");
 //            System.out.println("tämä on 86 " + verkkoMatriisi[alku.getId()][loppu.getId()]);
 //            System.out.println("reitinHinta " + reitinHinta);
@@ -144,21 +155,25 @@ public class Reittiopas {
     }
 
     /**
-     * Hakee nopeimman approreitin aloituspistestä lopetuspisteeseen käymällä kaikki baarit läpi.
+     * Hakee nopeimman approreitin aloituspistestä lopetuspisteeseen käymällä
+     * kaikki baarit läpi.
      */
     public void haeReitti() {
-        int[] vierailu = new int[verkko.getKartta().getPaikkojenLkm() + 1];
+        int[] vierailu = new int[100];
 //        System.out.println("aloituspaikka " + kartta.getAloituspaikka());
 //        System.out.println("lopetuspaikka " + kartta.getLopetuspaikka());
-        etsiReitti(verkko.getKartta().getAloituspaikka(), verkko.getKartta().getLopetuspaikka(), vierailu, 0, new Jono(),getBaarienMaara());
+        etsiReitti(verkko.getKartta().getAloituspaikka(), verkko.getKartta().getLopetuspaikka(), vierailu, 0, new Jono(), getBaarienMaara());
     }
+
     /**
-     * Hakee nopeimman approreitin aloituspisteestä lopetuspisteeseen käymällä parametrin verran baareissa.
-     * @param baarienMaara 
+     * Hakee nopeimman approreitin aloituspisteestä lopetuspisteeseen käymällä
+     * parametrin verran baareissa.
+     *
+     * @param baarienMaara
      */
     public void haeReitti(int baarienMaara) {
-        int[] vierailu = new int[verkko.getKartta().getPaikkojenLkm() + 1];
-        etsiReitti(verkko.getKartta().getAloituspaikka(),verkko.getKartta().getLopetuspaikka(),vierailu,0,new Jono(),baarienMaara);
+        int[] vierailu = new int[100];
+        etsiReitti(verkko.getKartta().getAloituspaikka(), verkko.getKartta().getLopetuspaikka(), vierailu, 0, new Jono(), baarienMaara);
     }
 
     /**
@@ -170,7 +185,7 @@ public class Reittiopas {
         Jono apu = reittiJono.kloonaa();
         String palautus = "";
         while (!apu.onTyhja()) {
-            Baari seuraava = apu.poistaEnsimmainen();
+            Koordinaatti seuraava = apu.poistaEnsimmainen();
             palautus += kartta.getKartta()[seuraava.getY()][seuraava.getX()];
         }
         return palautus;
@@ -186,7 +201,7 @@ public class Reittiopas {
         String palautus = " Approreitti on seuraava: " + " \n";
         Jono apu = reittiJono.kloonaa();
         while (!apu.onTyhja()) {
-            Baari seuraava = apu.poistaEnsimmainen();
+            Koordinaatti seuraava = apu.poistaEnsimmainen();
             palautus += "Baari " + kartta.getKartta()[seuraava.getY()][seuraava.getX()] + ", sijainti " + seuraava + "\n";
         }
 

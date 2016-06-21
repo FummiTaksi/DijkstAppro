@@ -28,7 +28,7 @@ public class Verkko {
     }
 
     /**
-     * Muodostaa verkon ja palauttaa sen kaksiuloitteisessa taulukossa.
+     * Muodostaa verkon ja palauttaa sen neliuloitteisessa taulukossa.
      * @return
      */
     public int[][] muodostaVerkko()  {
@@ -37,17 +37,15 @@ public class Verkko {
         int nousu = 0;
         while (nousu < kartta.getPaikkojenLkm()) {
 //            System.out.println("loopissa");
-            Baari yksi = kartta.getPaikat()[nousu];
+            Koordinaatti yksi = kartta.getPaikat()[nousu];
             for (int i = nousu + 1 ; i < kartta.getPaikkojenLkm() ; i++) {
 //                System.out.println("forissa");
                 
-                Baari kaksi = kartta.getPaikat()[i];
-//                System.out.println("toinen baari määritelty");
-                Koordinaatti alkupiste = new Koordinaatti(yksi.getX(),yksi.getY(),0);
-                Koordinaatti loppupiste = new Koordinaatti(kaksi.getX(),kaksi.getY(),0);
+                Koordinaatti kaksi = kartta.getPaikat()[i];
+//                System.out.println("toinen baari määritelty")
 //                System.out.println("alku " + alkupiste);
 //                System.out.println("loppu " + loppupiste);
-                int etaisyys = tahti.aStar(alkupiste, loppupiste);
+                int etaisyys = tahti.aStar(yksi, kaksi);
 //                System.out.println("etäisyys laskettu");
                 etaisyysMatriisi[yksi.getId()][kaksi.getId()] = etaisyys;
                 etaisyysMatriisi[kaksi.getId()][yksi.getId()] = etaisyys;
