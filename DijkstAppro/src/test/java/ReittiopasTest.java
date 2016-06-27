@@ -60,6 +60,10 @@ public class ReittiopasTest {
         opas.haeReitti(baarienMaara);
     }
     
+    public void haeReittiHinnoilla(String kartta,String juomat,int baarienMaara) throws FileNotFoundException {
+        this.opas = new Reittiopas(new Kartta(kartta));
+        opas.haeReitti(juomat, baarienMaara);
+    }
     
 
     @Test
@@ -189,5 +193,27 @@ public class ReittiopasTest {
     public void vaikea1ViidellaBaarillaHintaOikein() throws FileNotFoundException {
         haeReitti("vaikea1.txt",5);
         assertEquals(502,opas.getHalvimmanReitinHinta());
+    }
+    
+    @Test
+    public void esim2JuomillaPalauttaaSiltiNopeimmanReitin() throws FileNotFoundException {
+        haeReittiHinnoilla("esim2.txt","esim2juomat.txt",5);
+        assertEquals("adbecl",opas.palautaReitti());
+    }
+    
+    @Test
+    public void esim2JuomillaPalauttaaOikeanReitinKolmeBaaria() throws FileNotFoundException {
+        haeReittiHinnoilla("esim2.txt","esim2juomat.txt",3);
+        assertEquals(6,opas.juomienHinnat());
+    }
+    
+    @Test
+    public void esim1JarjestaminenToimii() {
+        assertEquals(new Koordinaatti(3,2,0),opas.getPaikatLahimpanaAloitusta()[0]);
+    }
+    
+    @Test
+    public void esim2JarjestaminenToimii() {
+        assertEquals(new Koordinaatti(6,3,0),opas.getPaikatLahimpanaAloitusta()[1]);
     }
 }

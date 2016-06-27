@@ -40,3 +40,7 @@ Tuntipäiväkirja
 
 21.6 Käyttöohjeet kirjoitettu, käyttöliittymää koodattu. 2h
 
+22.6 Uutta toiminnallisuutta koodattu 1,5h
+
+23.6 Uutta toiminnallisuutta koodattu ja testattu 2,5h
+

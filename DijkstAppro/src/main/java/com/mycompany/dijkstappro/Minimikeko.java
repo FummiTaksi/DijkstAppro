@@ -37,6 +37,14 @@ public class Minimikeko {
             lasku /= 2;
         }
     }
+   /**
+    * True jos keko on tyhjä,false jos siellä on alkioita.
+    * @return 
+    */
+    public boolean tyhja() {
+        return koko == 0;
+    }
+
 
     /**
      * Poistaa ja palauttaa pienimman alkion ja pitaa jarjestyksen ylla.
@@ -101,7 +109,7 @@ public class Minimikeko {
     }
 
     /**
-     * Alustaa taulukon uudelleen. Käytetään testaamiseen.
+     * Alustaa taulukon uudelleen. 
      * @param uusiTaulukko
      */
     public void setTaulukko(Koordinaatti[] uusiTaulukko) {
@@ -122,5 +130,19 @@ public class Minimikeko {
      */
     public void setKoko(int uusiKoko) {
         koko = uusiKoko;
+    }
+    /**
+     * Palauttaa täsmälleen identtisen minimikeko-olion.
+     * @return 
+     */
+    public Minimikeko kloonaa() {
+        Minimikeko klooni = new Minimikeko();
+        Koordinaatti[] kopioTaulukko = new Koordinaatti[100];
+        for (int i = 1; i <= koko; i++) {
+            kopioTaulukko[i] = taulukko[i];
+        }
+        klooni.setTaulukko(kopioTaulukko);
+        klooni.setKoko(koko);
+       return klooni;
     }
 }

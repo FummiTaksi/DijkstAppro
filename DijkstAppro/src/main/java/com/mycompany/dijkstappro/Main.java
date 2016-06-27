@@ -16,9 +16,15 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] arghh) throws FileNotFoundException {
-          Kayttoliittyma liittyma = new Kayttoliittyma();    
+//          Kayttoliittyma liittyma = new Kayttoliittyma();    
+//Kartta kartta = new Kartta();
+//        System.out.println(kartta.getTarkistus());
+//Kartta kartta = new Kartta();
+        Suorituskyky testi  = new Suorituskyky();
+        System.out.println(testi.reitinHaku());
+
     }
-    
+
     public static void lol() {
         System.out.println("lol");
     }

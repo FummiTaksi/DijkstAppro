@@ -65,6 +65,7 @@ public class MinimikekoTest {
         keko.lisaa(new Koordinaatti(2,2,2));
         keko.lisaa(new Koordinaatti(1,1,1));
     }
+    
 
     @Test
     public void lisaaminenTyhjaanKekoonToimii() {
@@ -193,4 +194,49 @@ public class MinimikekoTest {
         keko.lisaa(new Koordinaatti(1,1,1));
         assertEquals(keko.poistaPienin(),new Koordinaatti(1,1,1));
     }
+    
+    @Test
+    public void kloonausToimii1() {
+        alustaLisaysTesti();
+        Minimikeko kopio = keko.kloonaa();
+        assertEquals(kopio.poistaPienin(),new Koordinaatti(1,1,1));
+    }
+    
+    @Test 
+    public void kloonausToimii2() {
+        alustaLisaysTesti();
+        Minimikeko kopio = keko.kloonaa();
+        kopio.poistaPienin();
+        assertEquals(kopio.poistaPienin(),new Koordinaatti(2,2,2));
+    }
+    @Test 
+    public void kloonausToimii3() {
+        alustaLisaysTesti();
+        Minimikeko kopio = keko.kloonaa();
+        kopio.poistaPienin();
+        kopio.poistaPienin();
+        assertEquals(kopio.poistaPienin(),new Koordinaatti(3,3,3));
+    }
+    
+    @Test
+    public void kloonausToimii4() {
+        alustaLisaysTesti();
+        Minimikeko kopio = keko.kloonaa();
+        kopio.poistaPienin();
+        kopio.poistaPienin();
+        kopio.poistaPienin();
+        assertEquals(kopio.poistaPienin(),new Koordinaatti(6,6,6));
+    }
+    
+    @Test
+    public void kopioEiVaikutaAlkuperaiseen() {
+        alustaLisaysTesti();
+        Minimikeko kopio = keko.kloonaa();
+        for (int i = 1; i <= 4; i++) {
+            kopio.poistaPienin();
+        }
+        assertEquals(keko.poistaPienin(),new Koordinaatti(1,1,1));
+    }
+    
+    
 }

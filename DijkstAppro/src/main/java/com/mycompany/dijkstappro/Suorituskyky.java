@@ -24,4 +24,11 @@ public class Suorituskyky {
         opas.haeReitti();
         return System.currentTimeMillis() - alku;
     }
+    
+    public long reitinHaku() throws FileNotFoundException {
+        long alku = System.currentTimeMillis();
+        Reittiopas opas = new Reittiopas(new Kartta());
+        opas.haeReitti();
+        return System.currentTimeMillis() - alku;
+    }
 }

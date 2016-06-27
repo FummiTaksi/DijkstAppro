@@ -17,16 +17,22 @@ public class Koordinaatti implements Comparable{
    
 
     /**
-     *
+     * Konstruktori, jossa koordinaatilla on vain x ja y koordinaatti
      * @param x
      * @param y
-     * @param hinta Hinta on Manhattan-etaisyys loppupisteeseen + etaisyys alkupisteeseen.
+     * 
      */
     public Koordinaatti(int x, int y) {
         this.x = x;
         this.y = y;
+        
     }
-    
+    /**
+     * Parametri, jossa sijainnin mukana on myös arvo.
+     * @param x
+     * @param y
+     * @param hinta 
+     */
     public Koordinaatti(int x,int y,int hinta) {
         this.x = x;
         this.y = y;
