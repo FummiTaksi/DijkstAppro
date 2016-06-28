@@ -216,4 +216,14 @@ public class ReittiopasTest {
     public void esim2JarjestaminenToimii() {
         assertEquals(new Koordinaatti(6,3,0),opas.getPaikatLahimpanaAloitusta()[1]);
     }
+    @Test
+    public void haeReittiOptimoituToimiiSamallaTavalla() {
+        opas.haeReittiOptimoitu();
+        assertEquals("abcl",opas.palautaReitti());
+    }
+    @Test
+    public void haeReittiOptimoituOikeaHinta() {
+        opas.haeReittiOptimoitu();
+        assertEquals(92,opas.getHalvimmanReitinHinta());
+    }
 }

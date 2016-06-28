@@ -11,6 +11,7 @@ vaikea1.txt keskiarvo 250 ms.
 Aika kaksinkertaistui helposti.
 
 Testaaminen 1000x1000 random kartalla : keskiarvo 600ms. 
+Optimoitu reitinhaku 1000x100 random kartalla: keskiarvo 500ms !
 
 
 

@@ -22,6 +22,9 @@ public class Main {
 //Kartta kartta = new Kartta();
         Suorituskyky testi  = new Suorituskyky();
         System.out.println(testi.reitinHaku());
+//        Reittiopas opas = new Reittiopas(new Kartta("esim1.txt"));
+//        opas.haeReittiOptimoitu();
+//        System.out.println(opas.palautaReitti());
 
     }
 

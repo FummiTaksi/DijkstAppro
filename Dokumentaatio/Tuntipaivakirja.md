@@ -44,3 +44,7 @@ Tuntipäiväkirja
 
 23.6 Uutta toiminnallisuutta koodattu ja testattu 2,5h
 
+27.6 Uuutta toiminnallisuutta koodattu ja testattu 3h
+
+28.6 Loppuhiominen 1,5h
+
